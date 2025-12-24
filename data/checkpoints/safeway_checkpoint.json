@@ -1,0 +1,11 @@
+{
+  "seen_keys": [],
+  "stats": {
+    "total_scraped": 0,
+    "duplicates_skipped": 0,
+    "invalid_records": 0,
+    "pages_processed": 0,
+    "errors": 0
+  },
+  "last_updated": "2025-12-20T23:46:48.887468Z"
+}

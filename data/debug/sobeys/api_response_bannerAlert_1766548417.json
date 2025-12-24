@@ -1,0 +1,14 @@
+{
+  "error": {
+    "code": "400",
+    "message": "Error Occurred for cmsAlert data",
+    "target": "cmsAlert",
+    "details": [
+      {
+        "code": "400",
+        "message": "No food alert found!",
+        "target": "cmsAlert"
+      }
+    ]
+  }
+}

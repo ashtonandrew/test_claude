@@ -1,0 +1,239 @@
+{
+  "response": {
+    "Baby": [
+      "Baby Bath & Skin Care",
+      "Baby Food & Accessories",
+      "Baby Pain & Fever Relief",
+      "Diapers & Accessories"
+    ],
+    "Beer, Wine & Ciders": [
+      "Beer",
+      "Cocktail Mixes",
+      "Coolers",
+      "Non-Alcoholic Drinks",
+      "Wine"
+    ],
+    "Bread & Bakery": [
+      "Bagels",
+      "Bread",
+      "Buns & Dinner Rolls",
+      "Desserts & Pastries",
+      "English Muffins",
+      "Gluten-Free Baked Goods",
+      "Muffins",
+      "Wraps, Pita & Flatbread"
+    ],
+    "Bread and Bakery": [
+      "Buns & Dinner Rolls",
+      "Desserts & Pastries"
+    ],
+    "Cheese & Deli": [
+      "Charcuterie Jelly",
+      "Cheese",
+      "Deli Crackers",
+      "Deli Meats",
+      "Dips, Hummus & Sauces",
+      "Party Trays",
+      "Pizza Kits & Ingredients"
+    ],
+    "Dairy & Eggs": [
+      "Butter & Margarine",
+      "Cream & Creamers",
+      "Eggs",
+      "Milk",
+      "Sour Cream",
+      "Whipped Cream",
+      "Yogurt"
+    ],
+    "Drinks": [
+      "Coffee",
+      "Fruit & Vegetable Juice",
+      "Iced Tea & Lemonade",
+      "Kombucha & Wellness",
+      "Non-Alcoholic Drinks",
+      "Soft Drinks",
+      "Sports & Energy Drinks",
+      "Tea & Hot Drinks",
+      "Water"
+    ],
+    "Fall Season": [
+      "Fall Flavours",
+      "Halloween",
+      "Seasonal Produce",
+      "Thanksgiving"
+    ],
+    "Feed The Dream": [
+      "Coca Cola",
+      "Compliments",
+      "Conagra Foods",
+      "General Mills",
+      "Maple Leaf Foods",
+      "McCain",
+      "P&G"
+    ],
+    "Floral & Garden": [
+      "Flowers",
+      "Garden Care"
+    ],
+    "Fresh Fruits & Vegetables": [
+      "Cut Fruits & Vegetables",
+      "Fruits",
+      "Herbs",
+      "Packaged Salads & Dressing",
+      "Refrigerated Juices, Smoothies & Kombucha",
+      "Vegetables"
+    ],
+    "Frozen": [
+      "Frozen Appetizers",
+      "Frozen Beverages & Ice",
+      "Frozen Bread & Breakfast",
+      "Frozen Fruits & Vegetables",
+      "Frozen Meals, Entrees & Sides",
+      "Frozen Meat & Seafood",
+      "Frozen Pizza",
+      "Ice Cream & Treats"
+    ],
+    "Holiday": [
+      "Buy 2, Get 3rd Free",
+      "Buy 4, Get 5th Free",
+      "Deli Charcuterie Bundle",
+      "Holiday Baked Goods",
+      "Holiday Deli",
+      "Holiday Entertaining",
+      "Holiday Mains"
+    ],
+    "Household Products": [
+      "Home & Hardware"
+    ],
+    "International Foods": [
+      "Caribbean",
+      "East Asian",
+      "European",
+      "Filipino",
+      "Latin American",
+      "Middle Eastern",
+      "South Asian"
+    ],
+    "Kitchen & Household": [
+      "Air Fresheners & Deodorizers",
+      "Cleaning",
+      "Food Wraps & Containers",
+      "Garbage Bags & Liners",
+      "Home & Hardware",
+      "Kitchen Supplies",
+      "Laundry",
+      "Paper Products"
+    ],
+    "Local": [
+      "Local Atlantic Canada",
+      "Local Central Canada",
+      "Local Western Canada"
+    ],
+    "Lunar New Year": [],
+    "Meat": [
+      "Bacon",
+      "Beef & Veal",
+      "Burgers",
+      "Chicken",
+      "Deli Meats",
+      "Duck",
+      "Hot Dogs & Sausages",
+      "Lamb",
+      "Pork",
+      "Ready to Cook",
+      "Turkey"
+    ],
+    "Pantry": [
+      "Baking & Cooking Ingredients",
+      "Canned & Pickled",
+      "Cereal & Breakfast Foods",
+      "Condiments",
+      "Crackers, Cookies & Desserts",
+      "Easy Prep Meals & Sides",
+      "Marinades & Sauces",
+      "Oils, Vinegars & Salad Dressing",
+      "Pasta, Noodles & Sauce",
+      "Rice, Grains & Legumes",
+      "Soup & Broth",
+      "Spices & Seasoning",
+      "Spreads, Syrup & Honey"
+    ],
+    "Personal Care & Beauty": [
+      "Body, Skin & Lip Care",
+      "Deodorant & Antiperspirant",
+      "Feminine Products",
+      "Hair Care",
+      "Oral Care",
+      "Shaving & Grooming",
+      "Soap, Bath & Shower"
+    ],
+    "Pets": [
+      "Cat Food & Accessories",
+      "Dog Food & Accessories",
+      "Other Pet Food & Accessories"
+    ],
+    "Pharmacy & Wellness": [
+      "Diet & Fitness",
+      "Medicine & Health",
+      "Vitamins & Supplements"
+    ],
+    "Plant Based": [
+      "Meat Alternatives",
+      "Non-Dairy Butter",
+      "Non-Dairy Cheese",
+      "Non-Dairy Dips & Condiments",
+      "Non-Dairy Frozen Dessert",
+      "Non-Dairy Milk & Cream",
+      "Non-Dairy Yogurt",
+      "Plant Based Dinners & Entrees",
+      "Tofu",
+      "Veggie Burgers"
+    ],
+    "Ready To Eat": [
+      "Entertaining Trays",
+      "Fresh Pasta & Pasta Sauce",
+      "Lunch & Snack Kits",
+      "Ready To Eat Entrees & Sides",
+      "Salads",
+      "Sandwiches, Subs & Wraps",
+      "Soups",
+      "Sushi"
+    ],
+    "Seafood": [
+      "Fish",
+      "Frozen Seafood"
+    ],
+    "Shop Canada": [
+      "Canada Beverages",
+      "Canada Bread & Bakery",
+      "Canada Cheese & Deli",
+      "Canada Dairy & Eggs",
+      "Canada Frozen Foods",
+      "Canada Health & Beauty",
+      "Canada Meat & Seafood",
+      "Canada Pantry",
+      "Canada Snacks & Candy"
+    ],
+    "Snacks & Candy": [
+      "Apple Sauce",
+      "Candy & Chocolate",
+      "Chips",
+      "Cookies & Crackers",
+      "Dried Fruit",
+      "Energy, Granola & Cereal Bars",
+      "Fruit Cups",
+      "Fruit Flavoured Snacks",
+      "Jerky",
+      "Nuts, Seeds & Trail Mixes",
+      "Popcorn",
+      "Pudding & Gelatin Snacks",
+      "Rice Cakes"
+    ],
+    "Summer Essentials": [
+      "Summer BBQ"
+    ],
+    "Toys, Games & Party Supplies": [
+      "Party Supplies"
+    ]
+  }
+}

@@ -1,0 +1,423 @@
+2025-12-20 16:00:11 - root - INFO - Logging initialized. Writing to C:\Users\ashto\Desktop\First_claude\test_claude\data\logs\safeway.log
+2025-12-20 16:00:11 - root - INFO - ============================================================
+2025-12-20 16:00:11 - root - INFO - Starting scraper for: safeway
+2025-12-20 16:00:11 - root - INFO - ============================================================
+2025-12-20 16:00:11 - root - INFO - Search mode: query='milk', max_pages=1
+2025-12-20 16:00:11 - root - INFO - Searching for: milk
+2025-12-20 16:00:12 - root - INFO - Launching browser (headless=True)...
+2025-12-20 16:00:12 - root - INFO - Browser launched successfully
+2025-12-20 16:00:12 - root - INFO - Scraping category page 1: https://www.safeway.ca/shop/search-results.html?q=milk
+2025-12-20 16:00:23 - root - INFO - Fallback to DOM scraping...
+2025-12-20 16:00:23 - root - INFO - Extracted 0 products from DOM
+2025-12-20 16:00:23 - root - WARNING - No products found on page 1
+2025-12-20 16:00:24 - root - INFO - Browser closed
+2025-12-20 16:00:24 - root - INFO - Scraped 0 products from search results
+2025-12-20 16:00:24 - root - INFO - ============================================================
+2025-12-20 16:00:24 - root - INFO - SCRAPING STATISTICS
+2025-12-20 16:00:24 - root - INFO - ============================================================
+2025-12-20 16:00:24 - root - INFO - total_scraped: 0
+2025-12-20 16:00:24 - root - INFO - duplicates_skipped: 0
+2025-12-20 16:00:24 - root - INFO - invalid_records: 0
+2025-12-20 16:00:24 - root - INFO - pages_processed: 0
+2025-12-20 16:00:24 - root - INFO - errors: 0
+2025-12-20 16:00:24 - root - INFO - ============================================================
+2025-12-20 16:00:24 - root - INFO - ============================================================
+2025-12-20 16:00:24 - root - INFO - Scraping completed successfully
+2025-12-20 16:00:24 - root - INFO - Output: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\safeway\safeway_products.jsonl
+2025-12-20 16:00:24 - root - INFO - ============================================================
+2025-12-20 16:00:24 - root - INFO - Browser closed
+2025-12-20 16:02:01 - root - INFO - Logging initialized. Writing to C:\Users\ashto\Desktop\First_claude\test_claude\data\logs\safeway.log
+2025-12-20 16:02:01 - root - INFO - ============================================================
+2025-12-20 16:02:01 - root - INFO - Starting scraper for: safeway
+2025-12-20 16:02:01 - root - INFO - ============================================================
+2025-12-20 16:02:01 - root - INFO - Search mode: query='milk', max_pages=1
+2025-12-20 16:02:01 - root - INFO - Searching for: milk
+2025-12-20 16:02:01 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-12-20 16:02:02 - root - INFO - Launching browser (headless=False)...
+2025-12-20 16:02:02 - root - INFO - Browser launched successfully
+2025-12-20 16:02:02 - root - INFO - Scraping category page 1: https://www.safeway.ca/shop/search-results.html?q=milk
+2025-12-20 16:03:09 - root - ERROR - Error scraping page 1: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.safeway.ca/shop/search-results.html?q=milk", waiting until "networkidle"
+
+2025-12-20 16:03:10 - root - INFO - Browser closed
+2025-12-20 16:03:10 - root - INFO - Scraped 0 products from search results
+2025-12-20 16:03:10 - root - INFO - ============================================================
+2025-12-20 16:03:10 - root - INFO - SCRAPING STATISTICS
+2025-12-20 16:03:10 - root - INFO - ============================================================
+2025-12-20 16:03:10 - root - INFO - total_scraped: 0
+2025-12-20 16:03:10 - root - INFO - duplicates_skipped: 0
+2025-12-20 16:03:10 - root - INFO - invalid_records: 0
+2025-12-20 16:03:10 - root - INFO - pages_processed: 0
+2025-12-20 16:03:10 - root - INFO - errors: 1
+2025-12-20 16:03:10 - root - INFO - ============================================================
+2025-12-20 16:03:10 - root - DEBUG - Checkpoint saved: C:\Users\ashto\Desktop\First_claude\test_claude\data\checkpoints\safeway_checkpoint.json
+2025-12-20 16:03:10 - root - INFO - ============================================================
+2025-12-20 16:03:10 - root - INFO - Scraping completed successfully
+2025-12-20 16:03:10 - root - INFO - Output: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\safeway\safeway_products.jsonl
+2025-12-20 16:03:10 - root - INFO - ============================================================
+2025-12-20 16:03:10 - root - INFO - Browser closed
+2025-12-20 16:07:13 - root - INFO - Logging initialized. Writing to C:\Users\ashto\Desktop\First_claude\test_claude\data\logs\safeway.log
+2025-12-20 16:07:13 - root - INFO - ============================================================
+2025-12-20 16:07:13 - root - INFO - Starting scraper for: safeway
+2025-12-20 16:07:13 - root - INFO - ============================================================
+2025-12-20 16:07:13 - root - INFO - Search mode: query='milk', max_pages=1
+2025-12-20 16:07:13 - root - INFO - Searching for: milk
+2025-12-20 16:07:13 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-12-20 16:07:13 - root - INFO - Launching browser (headless=False)...
+2025-12-20 16:07:14 - root - INFO - Browser launched successfully
+2025-12-20 16:07:14 - root - INFO - Scraping category page 1: https://www.safeway.ca/search?q=milk
+2025-12-20 16:07:41 - root - ERROR - Error scraping page 1: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.safeway.ca/search?q=milk", waiting until "networkidle"
+Traceback (most recent call last):
+  File "C:\Users\ashto\Desktop\First_claude\test_claude\scrapers\sites\safeway.py", line 445, in scrape_category
+    page.goto(full_url, wait_until='networkidle', timeout=60000)
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\sync_api\_generated.py", line 9050, in goto
+    self._sync(
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_page.py", line 552, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_frame.py", line 153, in goto
+    await self._channel.send(
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.safeway.ca/search?q=milk", waiting until "networkidle"
+
+2025-12-20 16:07:41 - root - INFO - Browser closed
+2025-12-20 16:07:41 - root - INFO - Scraped 0 products from search results
+2025-12-20 16:07:41 - root - INFO - ============================================================
+2025-12-20 16:07:41 - root - INFO - SCRAPING STATISTICS
+2025-12-20 16:07:41 - root - INFO - ============================================================
+2025-12-20 16:07:41 - root - INFO - total_scraped: 0
+2025-12-20 16:07:41 - root - INFO - duplicates_skipped: 0
+2025-12-20 16:07:41 - root - INFO - invalid_records: 0
+2025-12-20 16:07:41 - root - INFO - pages_processed: 0
+2025-12-20 16:07:41 - root - INFO - errors: 1
+2025-12-20 16:07:41 - root - INFO - ============================================================
+2025-12-20 16:07:41 - root - DEBUG - Checkpoint saved: C:\Users\ashto\Desktop\First_claude\test_claude\data\checkpoints\safeway_checkpoint.json
+2025-12-20 16:07:41 - root - INFO - ============================================================
+2025-12-20 16:07:41 - root - INFO - Scraping completed successfully
+2025-12-20 16:07:41 - root - INFO - Output: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\safeway\safeway_products.jsonl
+2025-12-20 16:07:41 - root - INFO - ============================================================
+2025-12-20 16:07:41 - root - INFO - Browser closed
+2025-12-20 16:12:04 - root - INFO - Logging initialized. Writing to C:\Users\ashto\Desktop\First_claude\test_claude\data\logs\safeway.log
+2025-12-20 16:12:04 - root - INFO - ============================================================
+2025-12-20 16:12:04 - root - INFO - Starting scraper for: safeway
+2025-12-20 16:12:04 - root - INFO - ============================================================
+2025-12-20 16:12:04 - root - INFO - Search mode: query='milk', max_pages=1
+2025-12-20 16:12:04 - root - INFO - Searching for: milk
+2025-12-20 16:12:04 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-12-20 16:12:05 - root - INFO - Launching browser (headless=False)...
+2025-12-20 16:12:05 - root - INFO - Browser launched successfully
+2025-12-20 16:12:05 - root - INFO - Navigating to homepage: https://www.safeway.ca
+2025-12-20 16:12:44 - root - ERROR - Error during search: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.safeway.ca/", waiting until "networkidle"
+Traceback (most recent call last):
+  File "C:\Users\ashto\Desktop\First_claude\test_claude\scrapers\sites\safeway.py", line 512, in scrape_search
+    page.goto(self.base_url, wait_until='networkidle', timeout=60000)
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\sync_api\_generated.py", line 9050, in goto
+    self._sync(
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_page.py", line 552, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_frame.py", line 153, in goto
+    await self._channel.send(
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.safeway.ca/", waiting until "networkidle"
+
+2025-12-20 16:12:44 - root - INFO - Browser closed
+2025-12-20 16:12:44 - root - INFO - Scraped 0 products from search results
+2025-12-20 16:12:44 - root - INFO - ============================================================
+2025-12-20 16:12:44 - root - INFO - SCRAPING STATISTICS
+2025-12-20 16:12:44 - root - INFO - ============================================================
+2025-12-20 16:12:44 - root - INFO - total_scraped: 0
+2025-12-20 16:12:44 - root - INFO - duplicates_skipped: 0
+2025-12-20 16:12:44 - root - INFO - invalid_records: 0
+2025-12-20 16:12:44 - root - INFO - pages_processed: 0
+2025-12-20 16:12:44 - root - INFO - errors: 0
+2025-12-20 16:12:44 - root - INFO - ============================================================
+2025-12-20 16:12:44 - root - DEBUG - Checkpoint saved: C:\Users\ashto\Desktop\First_claude\test_claude\data\checkpoints\safeway_checkpoint.json
+2025-12-20 16:12:44 - root - INFO - ============================================================
+2025-12-20 16:12:44 - root - INFO - Scraping completed successfully
+2025-12-20 16:12:44 - root - INFO - Output: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\safeway\safeway_products.jsonl
+2025-12-20 16:12:44 - root - INFO - ============================================================
+2025-12-20 16:12:44 - root - INFO - Browser closed
+2025-12-20 16:15:02 - root - INFO - Logging initialized. Writing to C:\Users\ashto\Desktop\First_claude\test_claude\data\logs\safeway.log
+2025-12-20 16:15:02 - root - INFO - ============================================================
+2025-12-20 16:15:02 - root - INFO - Starting scraper for: safeway
+2025-12-20 16:15:02 - root - INFO - ============================================================
+2025-12-20 16:15:02 - root - INFO - Search mode: query='milk', max_pages=1
+2025-12-20 16:15:02 - root - INFO - Searching for: milk
+2025-12-20 16:15:02 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-12-20 16:15:02 - root - INFO - Launching browser (headless=False)...
+2025-12-20 16:15:03 - root - INFO - Browser launched successfully
+2025-12-20 16:15:03 - root - INFO - Navigating to homepage: https://www.safeway.ca
+2025-12-20 16:15:30 - root - INFO - Accepted cookies using selector: button:has-text("Accept")
+2025-12-20 16:15:31 - root - INFO - Page is now interactive
+2025-12-20 16:15:31 - root - INFO - Looking for search box...
+2025-12-20 16:15:36 - root - DEBUG - Selector input[type="search"] failed: Page.wait_for_selector: Timeout 5000ms exceeded.
+Call log:
+  - waiting for locator("input[type=\"search\"]") to be visible
+
+2025-12-20 16:15:36 - root - INFO - Found search input using selector: input[placeholder*="Search"]
+2025-12-20 16:15:37 - root - INFO - Clicking search box...
+2025-12-20 16:15:37 - root - WARNING - Click attempt 1 - search box not focused, retrying...
+2025-12-20 16:15:39 - root - INFO - Search box is now focused
+2025-12-20 16:15:39 - root - INFO - Submitting search...
+2025-12-20 16:15:40 - root - INFO - Search submitted via Enter key
+2025-12-20 16:15:40 - root - INFO - Search results URL: https://www.safeway.ca/
+2025-12-20 16:15:40 - root - INFO - Page title: Shop Groceries and Weekly Deals Online | Safeway Canada
+2025-12-20 16:15:40 - root - INFO - Found 4 elements matching '[class*="product"]'
+2025-12-20 16:15:40 - root - INFO - Has __NEXT_DATA__: False
+2025-12-20 16:15:40 - root - INFO - Page title: Shop Groceries and Weekly Deals Online | Safeway Canada
+2025-12-20 16:15:40 - root - INFO - Found 4 elements matching '[class*="product"]'
+2025-12-20 16:15:40 - root - INFO - Has __NEXT_DATA__: False
+2025-12-20 16:15:40 - root - INFO - Fallback to DOM scraping...
+2025-12-20 16:15:40 - root - WARNING - No product elements found with any known selector
+2025-12-20 16:15:40 - root - INFO - Extracted 0 products from DOM
+2025-12-20 16:15:40 - root - WARNING - No products found on search results page
+2025-12-20 16:15:40 - root - INFO - Browser closed
+2025-12-20 16:15:40 - root - INFO - Browser closed
+2025-12-20 16:15:40 - root - INFO - Scraped 0 products from search results
+2025-12-20 16:15:40 - root - INFO - ============================================================
+2025-12-20 16:15:40 - root - INFO - SCRAPING STATISTICS
+2025-12-20 16:15:40 - root - INFO - ============================================================
+2025-12-20 16:15:40 - root - INFO - total_scraped: 0
+2025-12-20 16:15:40 - root - INFO - duplicates_skipped: 0
+2025-12-20 16:15:40 - root - INFO - invalid_records: 0
+2025-12-20 16:15:40 - root - INFO - pages_processed: 0
+2025-12-20 16:15:40 - root - INFO - errors: 0
+2025-12-20 16:15:40 - root - INFO - ============================================================
+2025-12-20 16:15:40 - root - DEBUG - Checkpoint saved: C:\Users\ashto\Desktop\First_claude\test_claude\data\checkpoints\safeway_checkpoint.json
+2025-12-20 16:15:40 - root - INFO - ============================================================
+2025-12-20 16:15:40 - root - INFO - Scraping completed successfully
+2025-12-20 16:15:40 - root - INFO - Output: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\safeway\safeway_products.jsonl
+2025-12-20 16:15:40 - root - INFO - ============================================================
+2025-12-20 16:15:40 - root - INFO - Browser closed
+2025-12-20 16:24:00 - root - INFO - Logging initialized. Writing to C:\Users\ashto\Desktop\First_claude\test_claude\data\logs\safeway.log
+2025-12-20 16:24:00 - root - INFO - ============================================================
+2025-12-20 16:24:00 - root - INFO - Starting scraper for: safeway
+2025-12-20 16:24:00 - root - INFO - ============================================================
+2025-12-20 16:24:00 - root - INFO - Search mode: query='milk', max_pages=1
+2025-12-20 16:24:00 - root - INFO - Searching for: milk
+2025-12-20 16:24:00 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-12-20 16:24:00 - root - INFO - Launching browser (headless=False)...
+2025-12-20 16:24:00 - root - INFO - Browser launched successfully
+2025-12-20 16:24:01 - root - ERROR - Error during search: 'SafewayScraper' object has no attribute '_set_store_context'
+Traceback (most recent call last):
+  File "C:\Users\ashto\Desktop\First_claude\test_claude\scrapers\sites\safeway.py", line 659, in scrape_search
+    self._set_store_context(page)
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SafewayScraper' object has no attribute '_set_store_context'
+2025-12-20 16:24:01 - root - INFO - Browser closed
+2025-12-20 16:24:01 - root - INFO - Scraped 0 products from search results
+2025-12-20 16:24:01 - root - INFO - ============================================================
+2025-12-20 16:24:01 - root - INFO - SCRAPING STATISTICS
+2025-12-20 16:24:01 - root - INFO - ============================================================
+2025-12-20 16:24:01 - root - INFO - total_scraped: 0
+2025-12-20 16:24:01 - root - INFO - duplicates_skipped: 0
+2025-12-20 16:24:01 - root - INFO - invalid_records: 0
+2025-12-20 16:24:01 - root - INFO - pages_processed: 0
+2025-12-20 16:24:01 - root - INFO - errors: 0
+2025-12-20 16:24:01 - root - INFO - ============================================================
+2025-12-20 16:24:01 - root - DEBUG - Checkpoint saved: C:\Users\ashto\Desktop\First_claude\test_claude\data\checkpoints\safeway_checkpoint.json
+2025-12-20 16:24:01 - root - INFO - ============================================================
+2025-12-20 16:24:01 - root - INFO - Scraping completed successfully
+2025-12-20 16:24:01 - root - INFO - Output: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\safeway\safeway_products.jsonl
+2025-12-20 16:24:01 - root - INFO - ============================================================
+2025-12-20 16:24:01 - root - INFO - Browser closed
+2025-12-20 16:25:54 - root - INFO - Logging initialized. Writing to C:\Users\ashto\Desktop\First_claude\test_claude\data\logs\safeway.log
+2025-12-20 16:25:54 - root - INFO - ============================================================
+2025-12-20 16:25:54 - root - INFO - Starting scraper for: safeway
+2025-12-20 16:25:54 - root - INFO - ============================================================
+2025-12-20 16:25:54 - root - INFO - Search mode: query='milk', max_pages=1
+2025-12-20 16:25:54 - root - INFO - Searching for: milk
+2025-12-20 16:25:54 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-12-20 16:25:54 - root - INFO - Launching browser (headless=False)...
+2025-12-20 16:25:55 - root - INFO - Browser launched successfully
+2025-12-20 16:25:55 - root - INFO - Navigating to homepage: https://www.safeway.ca
+2025-12-20 16:26:55 - root - ERROR - Error during search: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.safeway.ca/", waiting until "networkidle"
+Traceback (most recent call last):
+  File "C:\Users\ashto\Desktop\First_claude\test_claude\scrapers\sites\safeway.py", line 659, in scrape_search
+    page.goto(self.base_url, wait_until='networkidle', timeout=60000)
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\sync_api\_generated.py", line 9050, in goto
+    self._sync(
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_page.py", line 552, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_frame.py", line 153, in goto
+    await self._channel.send(
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.safeway.ca/", waiting until "networkidle"
+
+2025-12-20 16:26:55 - root - INFO - Browser closed
+2025-12-20 16:26:55 - root - INFO - Scraped 0 products from search results
+2025-12-20 16:26:55 - root - INFO - ============================================================
+2025-12-20 16:26:55 - root - INFO - SCRAPING STATISTICS
+2025-12-20 16:26:55 - root - INFO - ============================================================
+2025-12-20 16:26:55 - root - INFO - total_scraped: 0
+2025-12-20 16:26:55 - root - INFO - duplicates_skipped: 0
+2025-12-20 16:26:55 - root - INFO - invalid_records: 0
+2025-12-20 16:26:55 - root - INFO - pages_processed: 0
+2025-12-20 16:26:55 - root - INFO - errors: 0
+2025-12-20 16:26:55 - root - INFO - ============================================================
+2025-12-20 16:26:55 - root - DEBUG - Checkpoint saved: C:\Users\ashto\Desktop\First_claude\test_claude\data\checkpoints\safeway_checkpoint.json
+2025-12-20 16:26:55 - root - INFO - ============================================================
+2025-12-20 16:26:55 - root - INFO - Scraping completed successfully
+2025-12-20 16:26:55 - root - INFO - Output: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\safeway\safeway_products.jsonl
+2025-12-20 16:26:55 - root - INFO - ============================================================
+2025-12-20 16:26:55 - root - INFO - Browser closed
+2025-12-20 16:29:45 - root - INFO - Logging initialized. Writing to C:\Users\ashto\Desktop\First_claude\test_claude\data\logs\safeway.log
+2025-12-20 16:29:45 - root - INFO - ============================================================
+2025-12-20 16:29:45 - root - INFO - Starting scraper for: safeway
+2025-12-20 16:29:45 - root - INFO - ============================================================
+2025-12-20 16:29:45 - root - INFO - Search mode: query='milk', max_pages=1
+2025-12-20 16:29:45 - root - INFO - Searching for: milk
+2025-12-20 16:29:45 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-12-20 16:29:46 - root - INFO - Launching browser (headless=False)...
+2025-12-20 16:29:46 - root - INFO - Browser launched successfully
+2025-12-20 16:29:46 - root - INFO - Navigating to homepage: https://www.safeway.ca
+2025-12-20 16:30:31 - root - ERROR - Error during search: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.safeway.ca/", waiting until "networkidle"
+Traceback (most recent call last):
+  File "C:\Users\ashto\Desktop\First_claude\test_claude\scrapers\sites\safeway.py", line 682, in scrape_search
+    page.goto(self.base_url, wait_until='networkidle', timeout=60000)
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\sync_api\_generated.py", line 9050, in goto
+    self._sync(
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_page.py", line 552, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_frame.py", line 153, in goto
+    await self._channel.send(
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.safeway.ca/", waiting until "networkidle"
+
+2025-12-20 16:30:32 - root - INFO - Browser closed
+2025-12-20 16:30:32 - root - INFO - Scraped 0 products from search results
+2025-12-20 16:30:32 - root - INFO - ============================================================
+2025-12-20 16:30:32 - root - INFO - SCRAPING STATISTICS
+2025-12-20 16:30:32 - root - INFO - ============================================================
+2025-12-20 16:30:32 - root - INFO - total_scraped: 0
+2025-12-20 16:30:32 - root - INFO - duplicates_skipped: 0
+2025-12-20 16:30:32 - root - INFO - invalid_records: 0
+2025-12-20 16:30:32 - root - INFO - pages_processed: 0
+2025-12-20 16:30:32 - root - INFO - errors: 0
+2025-12-20 16:30:32 - root - INFO - ============================================================
+2025-12-20 16:30:32 - root - DEBUG - Checkpoint saved: C:\Users\ashto\Desktop\First_claude\test_claude\data\checkpoints\safeway_checkpoint.json
+2025-12-20 16:30:32 - root - INFO - ============================================================
+2025-12-20 16:30:32 - root - INFO - Scraping completed successfully
+2025-12-20 16:30:32 - root - INFO - Output: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\safeway\safeway_products.jsonl
+2025-12-20 16:30:32 - root - INFO - ============================================================
+2025-12-20 16:30:32 - root - INFO - Browser closed
+2025-12-20 16:44:53 - root - INFO - Logging initialized. Writing to C:\Users\ashto\Desktop\First_claude\test_claude\data\logs\safeway.log
+2025-12-20 16:44:53 - root - INFO - ============================================================
+2025-12-20 16:44:53 - root - INFO - Starting scraper for: safeway
+2025-12-20 16:44:53 - root - INFO - ============================================================
+2025-12-20 16:44:53 - root - INFO - Search mode: query='milk', max_pages=1
+2025-12-20 16:44:53 - root - INFO - Searching for: milk
+2025-12-20 16:44:53 - root - INFO - Launching stealth browser (headless=False)...
+2025-12-20 16:44:54 - root - INFO - Stealth browser launched successfully
+2025-12-20 16:44:54 - root - INFO - Starting Google navigation for 'safeway'...
+2025-12-20 16:44:54 - root - INFO - Loading Google homepage...
+2025-12-20 16:45:08 - root - INFO - Searching for 'safeway'...
+2025-12-20 16:45:08 - root - INFO - Found search box: textarea[name="q"]
+2025-12-20 16:45:12 - root - INFO - Search submitted, waiting for results...
+2025-12-20 16:45:23 - root - INFO - Looking for organic search result...
+2025-12-20 16:45:25 - root - WARNING - Could not find organic search result, navigating directly...
+2025-12-20 16:45:55 - root - ERROR - Google navigation failed: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.safeway.ca/", waiting until "networkidle"
+Traceback (most recent call last):
+  File "C:\Users\ashto\Desktop\First_claude\test_claude\scrapers\sites\safeway.py", line 261, in _navigate_via_google
+    page.goto(self.base_url, wait_until='networkidle', timeout=30000)
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\sync_api\_generated.py", line 9050, in goto
+    self._sync(
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_page.py", line 552, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_frame.py", line 153, in goto
+    await self._channel.send(
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashto\Desktop\First_claude\.venv\Lib\site-packages\playwright\_impl\_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.safeway.ca/", waiting until "networkidle"
+
+2025-12-20 16:45:55 - root - INFO - Falling back to direct navigation...
+2025-12-20 16:46:20 - root - INFO - Accepted cookies: button:has-text("Accept")
+2025-12-20 16:46:21 - root - INFO - Selecting store: Airdrie
+2025-12-20 16:46:39 - root - WARNING - Could not find store selector
+2025-12-20 16:46:40 - root - INFO - Looking for search box...
+2025-12-20 16:46:45 - root - INFO - Found search input: input[placeholder*="Search" i]
+2025-12-20 16:46:46 - root - INFO - Typing search query...
+2025-12-20 16:46:48 - root - INFO - Search complete: https://www.safeway.ca/
+2025-12-20 16:46:48 - root - INFO - Page title: Shop Groceries and Weekly Deals Online | Safeway Canada
+2025-12-20 16:46:48 - root - INFO - Has __NEXT_DATA__: False
+2025-12-20 16:46:48 - root - INFO - Page title: Shop Groceries and Weekly Deals Online | Safeway Canada
+2025-12-20 16:46:48 - root - INFO - Has __NEXT_DATA__: False
+2025-12-20 16:46:48 - root - INFO - Fallback to DOM scraping...
+2025-12-20 16:46:48 - root - INFO - Found 0 product elements in DOM
+2025-12-20 16:46:48 - root - INFO - Extracted 0 from DOM
+2025-12-20 16:46:48 - root - WARNING - No products found
+2025-12-20 16:46:48 - root - INFO - Browser closed
+2025-12-20 16:46:48 - root - INFO - Scraped 0 products from search results
+2025-12-20 16:46:48 - root - INFO - ============================================================
+2025-12-20 16:46:48 - root - INFO - SCRAPING STATISTICS
+2025-12-20 16:46:48 - root - INFO - ============================================================
+2025-12-20 16:46:48 - root - INFO - total_scraped: 0
+2025-12-20 16:46:48 - root - INFO - duplicates_skipped: 0
+2025-12-20 16:46:48 - root - INFO - invalid_records: 0
+2025-12-20 16:46:48 - root - INFO - pages_processed: 0
+2025-12-20 16:46:48 - root - INFO - errors: 0
+2025-12-20 16:46:48 - root - INFO - ============================================================
+2025-12-20 16:46:48 - root - INFO - ============================================================
+2025-12-20 16:46:48 - root - INFO - Scraping completed successfully
+2025-12-20 16:46:48 - root - INFO - Output: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\safeway\safeway_products.jsonl
+2025-12-20 16:46:48 - root - INFO - ============================================================
+2025-12-20 16:46:48 - root - INFO - Browser closed
