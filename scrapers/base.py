@@ -22,7 +22,9 @@ from scrapers.common import (
     parse_price,
     get_iso_timestamp,
     ensure_data_directories,
-    RateLimiter
+    RateLimiter,
+    get_dated_log_path,
+    backup_data_file
 )
 
 
@@ -178,6 +180,9 @@ class BaseScraper(ABC):
         ensure_data_directories(self.project_root)
         self._setup_paths()
 
+        # Backup existing data before starting
+        self._backup_existing_data()
+
         # Initialize components
         self.rate_limiter = RateLimiter(
             min_delay=self.config.get('min_delay_seconds', 2.0),
@@ -221,11 +226,19 @@ class BaseScraper(ABC):
         self.jsonl_path = self.raw_data_dir / f"{self.site_slug}_products.jsonl"
         self.csv_path = self.raw_data_dir / f"{self.site_slug}_products.csv"
 
-        # Log file
-        self.log_path = data_root / 'logs' / f"{self.site_slug}.log"
+        # Log file (dated for automatic rotation)
+        logs_dir = self.project_root / 'logs'
+        self.log_path = get_dated_log_path(self.site_slug, logs_dir)
 
         # Checkpoint file
-        self.checkpoint_path = data_root / 'checkpoints' / f"{self.site_slug}_checkpoint.json"
+        checkpoints_dir = self.project_root / 'checkpoints'
+        self.checkpoint_path = checkpoints_dir / f"{self.site_slug}_checkpoint.json"
+
+    def _backup_existing_data(self):
+        """Create backup of existing data file before starting new scrape run."""
+        backup_data_file(self.jsonl_path)
+        # Also backup CSV if it exists
+        backup_data_file(self.csv_path)
 
     def load_checkpoint(self) -> Dict:
         """Load checkpoint data."""

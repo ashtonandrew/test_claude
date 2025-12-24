@@ -12,7 +12,7 @@ import httpx
 from pathlib import Path
 
 from scrapers.base import ProductRecord, BaseScraper
-from scrapers.common import get_iso_timestamp
+from scrapers.common import get_iso_timestamp, setup_logging_with_rotation, backup_data_file
 
 
 class SobeysAPIScraper(BaseScraper):
@@ -328,10 +328,8 @@ class SobeysAPIScraper(BaseScraper):
 
 def main():
     """Run comprehensive scraping test"""
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s'
-    )
+    # Setup logging with automatic rotation
+    setup_logging_with_rotation('sobeys', level=logging.INFO)
 
     # Setup paths
     project_root = Path(__file__).parent.parent.parent
@@ -385,6 +383,9 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
 
     output_file = output_dir / "sobeys_products.jsonl"
+
+    # Backup existing data before overwriting
+    backup_data_file(output_file)
 
     import json
     with open(output_file, 'w', encoding='utf-8') as f:

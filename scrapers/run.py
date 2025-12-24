@@ -20,7 +20,7 @@ if str(project_root) not in sys.path:
 import argparse
 import logging
 
-from scrapers.common import setup_logging
+from scrapers.common import setup_logging_with_rotation, rotate_old_logs
 
 
 def get_project_root() -> Path:
@@ -171,9 +171,11 @@ Examples:
         headless=args.headless
     )
 
-    # Setup logging
+    # Setup logging with automatic rotation
     log_level = getattr(logging, args.log_level)
-    setup_logging(scraper.log_path, level=log_level)
+    logs_dir = project_root / 'logs'
+    backup_logs_dir = project_root / 'backup_logs'
+    setup_logging_with_rotation(args.site, level=log_level, logs_dir=logs_dir, backup_logs_dir=backup_logs_dir)
 
     logging.info("=" * 60)
     logging.info(f"Starting scraper for: {args.site}")

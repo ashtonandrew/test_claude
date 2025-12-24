@@ -9,6 +9,7 @@ import random
 import json
 import csv
 import logging
+import shutil
 from pathlib import Path
 from typing import Dict, List, Optional, Callable, Any
 from functools import wraps
@@ -262,9 +263,101 @@ def save_json_file(file_path: Path, data: Dict, indent: int = 2):
         json.dump(data, f, ensure_ascii=False, indent=indent)
 
 
+def backup_data_file(file_path: Path) -> bool:
+    """
+    Create a backup of an existing data file before overwriting.
+    Backup is named with _BACKUP suffix (e.g., sobeys_products.jsonl -> sobeys_products_BACKUP.jsonl).
+    If a backup already exists, it will be overwritten.
+
+    Args:
+        file_path: Path to the data file to backup
+
+    Returns:
+        True if backup was created, False if source file doesn't exist
+    """
+    if not file_path.exists():
+        logging.debug(f"No existing file to backup: {file_path}")
+        return False
+
+    # Create backup filename by inserting _BACKUP before the extension
+    backup_path = file_path.parent / f"{file_path.stem}_BACKUP{file_path.suffix}"
+
+    try:
+        # Copy the file to backup location (overwrite if backup exists)
+        shutil.copy2(file_path, backup_path)
+        logging.info(f"Created backup: {backup_path}")
+        return True
+    except Exception as e:
+        logging.error(f"Failed to create backup of {file_path}: {e}")
+        return False
+
+
 # =============================================================================
 # LOGGING SETUP
 # =============================================================================
+
+def get_dated_log_path(store_name: str, logs_dir: Path = None) -> Path:
+    """
+    Generate dated log file path for a store scraper.
+    Format: {store_name}_YYYY_monthname_DD.log (e.g., sobeys_2025_december_24.log)
+
+    Args:
+        store_name: Name of the store (e.g., 'sobeys', 'safeway')
+        logs_dir: Directory for log files (defaults to project_root/logs)
+
+    Returns:
+        Path to dated log file
+    """
+    if logs_dir is None:
+        logs_dir = Path("logs")
+
+    # Get current date components
+    now = datetime.now()
+    month_name = now.strftime('%B').lower()  # Full month name in lowercase
+    year = now.year
+    day = now.day
+
+    # Generate dated filename
+    log_filename = f"{store_name}_{year}_{month_name}_{day:02d}.log"
+    return logs_dir / log_filename
+
+
+def rotate_old_logs(store_name: str, logs_dir: Path = None, backup_logs_dir: Path = None):
+    """
+    Move old log files (from previous dates) to backup_logs directory.
+    Only keeps the current day's log in logs/.
+
+    Args:
+        store_name: Name of the store (e.g., 'sobeys', 'safeway')
+        logs_dir: Directory containing current logs (defaults to project_root/logs)
+        backup_logs_dir: Directory for archived logs (defaults to project_root/backup_logs)
+    """
+    if logs_dir is None:
+        logs_dir = Path("logs")
+    if backup_logs_dir is None:
+        backup_logs_dir = Path("backup_logs")
+
+    # Ensure backup directory exists
+    backup_logs_dir.mkdir(parents=True, exist_ok=True)
+
+    # Get current dated log path
+    current_log = get_dated_log_path(store_name, logs_dir)
+
+    # Find all log files for this store
+    pattern = f"{store_name}_*.log"
+    for log_file in logs_dir.glob(pattern):
+        # Skip the current day's log
+        if log_file == current_log:
+            continue
+
+        # Move old log to backup directory
+        try:
+            backup_path = backup_logs_dir / log_file.name
+            shutil.move(str(log_file), str(backup_path))
+            logging.info(f"Archived old log: {log_file.name} -> backup_logs/")
+        except Exception as e:
+            logging.warning(f"Failed to archive log {log_file}: {e}")
+
 
 def setup_logging(log_file: Path, level: int = logging.INFO):
     """
@@ -303,6 +396,28 @@ def setup_logging(log_file: Path, level: int = logging.INFO):
     root_logger.addHandler(console_handler)
 
     logging.info(f"Logging initialized. Writing to {log_file}")
+
+
+def setup_logging_with_rotation(store_name: str, level: int = logging.INFO,
+                                  logs_dir: Path = None, backup_logs_dir: Path = None):
+    """
+    Configure logging with automatic date-based rotation.
+    Creates dated log files and moves old logs to backup directory.
+
+    Args:
+        store_name: Name of the store (e.g., 'sobeys', 'safeway')
+        level: Logging level (default: INFO)
+        logs_dir: Directory for current logs (defaults to project_root/logs)
+        backup_logs_dir: Directory for archived logs (defaults to project_root/backup_logs)
+    """
+    # Rotate old logs before setting up new logging
+    rotate_old_logs(store_name, logs_dir, backup_logs_dir)
+
+    # Get current dated log path
+    log_file = get_dated_log_path(store_name, logs_dir)
+
+    # Setup logging with the dated log file
+    setup_logging(log_file, level)
 
 
 # =============================================================================
