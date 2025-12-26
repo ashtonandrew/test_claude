@@ -7,7 +7,11 @@ Follows the Rooney Method: API First → DOM Fallback
 
 import logging
 import time
-from typing import List, Optional, Dict, Any
+import json
+import random
+import re
+from typing import List, Optional, Dict, Any, Tuple
+from datetime import datetime
 import httpx
 from pathlib import Path
 
@@ -30,11 +34,155 @@ class SobeysAPIScraper(BaseScraper):
     # Sobeys internal API
     SOBEYS_API_BASE = "https://www.sobeys.com/api"
 
-    def __init__(self, config_path, project_root, headless=True):
+    def __init__(self, config_path, project_root, headless=True, debug=True):
         super().__init__(config_path, project_root)
         self.client = None
         self.store_number = "0320"  # Default store (Airdrie)
+        self.debug = debug  # Enable debug snapshots
+
+        # Setup debug directories
+        if self.debug:
+            self.debug_dir = project_root / 'data' / 'debug' / 'sobeys'
+            self.debug_dir.mkdir(parents=True, exist_ok=True)
+            logging.info(f"Debug mode enabled. Snapshots will be saved to: {self.debug_dir}")
+
         # API scraper doesn't need headless param but accepts it for compatibility
+
+    def _fetch_with_retry(self, method: str, url: str, **kwargs) -> httpx.Response:
+        """
+        Fetch URL with retry logic and exponential backoff
+
+        Args:
+            method: HTTP method (GET, POST)
+            url: URL to fetch
+            **kwargs: Additional arguments for httpx request
+
+        Returns:
+            httpx.Response object
+
+        Raises:
+            httpx.HTTPError: If all retries fail
+        """
+        max_retries = self.config.get('max_retries', 3)
+
+        for attempt in range(max_retries):
+            try:
+                if method.upper() == 'POST':
+                    response = self.client.post(url, **kwargs)
+                else:
+                    response = self.client.get(url, **kwargs)
+
+                response.raise_for_status()
+                return response
+
+            except httpx.HTTPError as e:
+                if attempt < max_retries - 1:
+                    # Exponential backoff: 2^attempt seconds (1s, 2s, 4s, ...)
+                    wait_time = 2 ** attempt
+                    logging.warning(
+                        f"Request failed (attempt {attempt + 1}/{max_retries}): {e}. "
+                        f"Retrying in {wait_time}s..."
+                    )
+                    time.sleep(wait_time)
+                else:
+                    # Final attempt failed
+                    logging.error(f"All {max_retries} attempts failed for {url}: {e}")
+                    raise
+
+    def _calculate_unit_price(self, price: float, size_text: str) -> Tuple[Optional[float], Optional[str]]:
+        """
+        Calculate unit price from total price and size text
+
+        Args:
+            price: Total price in CAD
+            size_text: Size text like "0.605 KG", "2 L", "500 ml", etc.
+
+        Returns:
+            Tuple of (unit_price, unit_price_uom) or (None, None) if cannot calculate
+        """
+        if not price or not size_text:
+            return None, None
+
+        try:
+            # Parse size_text to extract numeric value and UOM
+            # Examples: "0.605 KG", "2 L", "500 ml", "12 × 355 ml"
+
+            # Clean and normalize
+            size_clean = size_text.strip().upper()
+
+            # Handle multi-pack formats like "12 × 355 ml"
+            if '×' in size_clean or 'X' in size_clean:
+                # Extract total quantity
+                match = re.search(r'(\d+(?:\.\d+)?)\s*[×X]\s*(\d+(?:\.\d+)?)\s*([A-Z]+)', size_clean)
+                if match:
+                    count = float(match.group(1))
+                    unit_size = float(match.group(2))
+                    uom = match.group(3)
+                    quantity = count * unit_size
+                else:
+                    return None, None
+            else:
+                # Simple format: "0.605 KG"
+                match = re.search(r'(\d+(?:\.\d+)?)\s*([A-Z]+)', size_clean)
+                if not match:
+                    return None, None
+
+                quantity = float(match.group(1))
+                uom = match.group(2)
+
+            # Normalize UOM to standard units
+            if uom in ['ML', 'MILLILITER', 'MILLILITRE']:
+                # Convert to L for unit price
+                quantity = quantity / 1000
+                uom = 'L'
+            elif uom in ['G', 'GRAM', 'GRAMS']:
+                # Convert to KG for unit price
+                quantity = quantity / 1000
+                uom = 'KG'
+            elif uom in ['L', 'LITER', 'LITRE']:
+                uom = 'L'
+            elif uom in ['KG', 'KILOGRAM', 'KILOGRAMS']:
+                uom = 'KG'
+            elif uom in ['EA', 'EACH', 'UNIT']:
+                uom = 'EA'
+
+            # Calculate unit price
+            if quantity > 0:
+                unit_price = round(price / quantity, 2)
+                return unit_price, uom
+
+            return None, None
+
+        except (ValueError, AttributeError, ZeroDivisionError) as e:
+            logging.debug(f"Could not calculate unit price from '{size_text}': {e}")
+            return None, None
+
+    def _save_debug_snapshot(self, name: str, data: Any, snapshot_type: str = "json"):
+        """
+        Save debug snapshot of request/response data
+
+        Args:
+            name: Descriptive name for the snapshot (e.g., "algolia_search_milk_page_0")
+            data: Data to save (dict, list, or string)
+            snapshot_type: Type of snapshot ("json", "text", "error")
+        """
+        if not self.debug:
+            return
+
+        timestamp = int(time.time())
+        filename = f"{name}_{timestamp}.json"
+        filepath = self.debug_dir / filename
+
+        try:
+            with open(filepath, 'w', encoding='utf-8') as f:
+                if isinstance(data, (dict, list)):
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+                else:
+                    f.write(str(data))
+
+            logging.info(f"[DEBUG_SNAPSHOT] Saved {snapshot_type} snapshot: {filename}")
+        except Exception as e:
+            logging.error(f"Failed to save debug snapshot {filename}: {e}")
 
     def _get_headers(self) -> Dict[str, str]:
         """Get headers for API requests"""
@@ -90,25 +238,45 @@ class SobeysAPIScraper(BaseScraper):
 
                     page += 1
 
-                    # Polite delay between requests
+                    # Polite delay between requests using config values
                     if page < max_pages:
-                        time.sleep(1.5)
+                        delay = random.uniform(
+                            self.config.get('min_delay_seconds', 5.0),
+                            self.config.get('max_delay_seconds', 8.0)
+                        )
+                        logging.debug(f"Waiting {delay:.2f} seconds before next request...")
+                        time.sleep(delay)
 
                 except Exception as e:
                     logging.error(f"Error fetching page {page + 1}: {e}")
+                    # Save error snapshot
+                    self._save_debug_snapshot(
+                        f"error_{query}_page_{page}",
+                        {"error": str(e), "query": query, "page": page, "type": type(e).__name__},
+                        "error"
+                    )
                     break
 
-        # Deduplicate by unique_id (objectID from Algolia)
+        # Deduplicate by UPC (external_id) - guaranteed unique per product
         unique_products = {}
         for product in products:
-            # Use the _unique_id we attached during parsing
-            unique_id = getattr(product, '_unique_id', None)
-            if unique_id and unique_id not in unique_products:
-                unique_products[unique_id] = product
-            elif not unique_id:
-                # Fallback: use name+price as key
-                key = f"{product.name}_{product.price}"
-                if key not in unique_products:
+            # Use UPC as primary deduplication key
+            key = product.external_id
+            if key not in unique_products:
+                unique_products[key] = product
+            else:
+                # Keep the record with the most recent timestamp
+                existing = unique_products[key]
+
+                # Detect price changes
+                if existing.price != product.price:
+                    logging.warning(
+                        f"Price change detected for {product.name} (UPC: {key}): "
+                        f"${existing.price} -> ${product.price}"
+                    )
+
+                # Keep the most recent one
+                if product.scrape_ts > existing.scrape_ts:
                     unique_products[key] = product
 
         logging.info(f"Total unique products: {len(unique_products)}")
@@ -140,11 +308,25 @@ class SobeysAPIScraper(BaseScraper):
 
         logging.debug(f"Algolia request: {body}")
 
-        response = self.client.post(url, json=body)
-        response.raise_for_status()
+        # Save debug snapshot of request
+        self._save_debug_snapshot(
+            f"algolia_request_{query}_page_{page}",
+            {"url": url, "body": body, "headers": dict(self._get_headers())},
+            "json"
+        )
+
+        # Use retry logic for API calls
+        response = self._fetch_with_retry('POST', url, json=body)
 
         data = response.json()
         logging.debug(f"Algolia response keys: {data.keys()}")
+
+        # Save debug snapshot of response
+        self._save_debug_snapshot(
+            f"algolia_response_{query}_page_{page}",
+            data,
+            "json"
+        )
 
         # Extract products from response
         if "results" in data and len(data["results"]) > 0:
@@ -170,8 +352,7 @@ class SobeysAPIScraper(BaseScraper):
 
         # This endpoint might need specific parameters
         # For now, we'll just try to fetch it
-        response = self.client.get(url)
-        response.raise_for_status()
+        response = self._fetch_with_retry('GET', url)
 
         data = response.json()
 
@@ -217,12 +398,20 @@ class SobeysAPIScraper(BaseScraper):
             if size_text and hit.get("uom"):
                 size_text = f"{size_text} {hit.get('uom')}"
 
-            # Unit price
+            # Unit price - calculate from price and size since API doesn't provide it
             unit_price = None
             unit_price_uom = None
+
+            # Try to get from API first (though this field doesn't seem to exist)
             if hit.get("unitPrice"):
                 unit_price = float(hit.get("unitPrice"))
                 unit_price_uom = hit.get("uom")
+            else:
+                # Calculate unit price from total price and size_text
+                if price and size_text:
+                    unit_price, unit_price_uom = self._calculate_unit_price(price, size_text)
+                    if unit_price:
+                        logging.debug(f"Calculated unit price: ${unit_price}/{unit_price_uom} for {name}")
 
             # Category - use hierarchical categories if available → category_path
             category_path = None
@@ -351,14 +540,24 @@ def main():
         logging.info(f"Found {len(products)} unique products for '{query}'")
         all_products.extend(products)
 
-    # Deduplicate across all queries
+    # Deduplicate across all queries using UPC
     unique_products = {}
     for product in all_products:
-        # Use the _unique_id we attached during parsing
-        unique_id = getattr(product, '_unique_id', None)
-        key = unique_id or f"{product.name}_{product.price}"
+        # Use UPC (external_id) as the deduplication key
+        key = product.external_id
         if key not in unique_products:
             unique_products[key] = product
+        else:
+            # Detect price changes
+            existing = unique_products[key]
+            if existing.price != product.price:
+                logging.warning(
+                    f"Price change detected for {product.name} (UPC: {key}): "
+                    f"${existing.price} -> ${product.price}"
+                )
+            # Keep the most recent one
+            if product.scrape_ts > existing.scrape_ts:
+                unique_products[key] = product
 
     final_products = list(unique_products.values())
     logging.info(f"\n{'='*60}")

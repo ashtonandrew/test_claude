@@ -1,0 +1,21 @@
+{
+  "url": "https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries",
+  "body": {
+    "requests": [
+      {
+        "indexName": "dxp_product_en",
+        "params": "query=bread&hitsPerPage=24&page=2"
+      }
+    ]
+  },
+  "headers": {
+    "x-algolia-api-key": "fe555974f588b3e76ad0f1c548113b22",
+    "x-algolia-application-id": "ACSYSHF8AU",
+    "x-algolia-agent": "Algolia for JavaScript (5.46.2); Search (5.46.2); Browser",
+    "Content-Type": "application/json",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Accept": "application/json",
+    "Origin": "https://www.sobeys.com",
+    "Referer": "https://www.sobeys.com/"
+  }
+}

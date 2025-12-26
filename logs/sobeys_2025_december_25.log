@@ -1,0 +1,642 @@
+2025-12-25 21:20:12 - root - INFO - Logging initialized. Writing to logs\sobeys_2025_december_25.log
+2025-12-25 21:20:12 - root - INFO - Loaded config from C:\Users\ashto\Desktop\First_claude\test_claude\configs\sobeys.json
+2025-12-25 21:20:12 - root - INFO - Created backup: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\sobeys\sobeys_products_BACKUP.jsonl
+2025-12-25 21:20:12 - root - INFO - Debug mode enabled. Snapshots will be saved to: C:\Users\ashto\Desktop\First_claude\test_claude\data\debug\sobeys
+2025-12-25 21:20:12 - root - INFO - 
+============================================================
+2025-12-25 21:20:12 - root - INFO - Searching for: milk
+2025-12-25 21:20:12 - root - INFO - ============================================================
+2025-12-25 21:20:13 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:20:13 - root - WARNING - Request failed (attempt 1/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 1s...
+2025-12-25 21:20:15 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:20:15 - root - WARNING - Request failed (attempt 2/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 2s...
+2025-12-25 21:20:17 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:20:17 - root - ERROR - All 3 attempts failed for https://www.sobeys.com/api/featuredCampaignDataForSearch: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:20:17 - root - WARNING - Could not fetch featured products: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:20:17 - root - INFO - Fetching page 1/5 for query 'milk'...
+2025-12-25 21:20:17 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_milk_page_0_1766722817.json
+2025-12-25 21:20:17 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:20:17 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_milk_page_0_1766722817.json
+2025-12-25 21:20:17 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:20:17 - root - INFO - Extracted 24 products from page 1
+2025-12-25 21:20:22 - root - INFO - Fetching page 2/5 for query 'milk'...
+2025-12-25 21:20:22 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_milk_page_1_1766722822.json
+2025-12-25 21:20:22 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:20:22 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_milk_page_1_1766722822.json
+2025-12-25 21:20:22 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:20:22 - root - INFO - Extracted 24 products from page 2
+2025-12-25 21:20:27 - root - INFO - Fetching page 3/5 for query 'milk'...
+2025-12-25 21:20:27 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_milk_page_2_1766722827.json
+2025-12-25 21:20:28 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:20:28 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_milk_page_2_1766722828.json
+2025-12-25 21:20:28 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:20:28 - root - INFO - Extracted 24 products from page 3
+2025-12-25 21:20:35 - root - INFO - Fetching page 4/5 for query 'milk'...
+2025-12-25 21:20:35 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_milk_page_3_1766722835.json
+2025-12-25 21:20:35 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:20:35 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_milk_page_3_1766722835.json
+2025-12-25 21:20:35 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:20:35 - root - INFO - Extracted 24 products from page 4
+2025-12-25 21:20:41 - root - INFO - Fetching page 5/5 for query 'milk'...
+2025-12-25 21:20:41 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_milk_page_4_1766722841.json
+2025-12-25 21:20:41 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:20:42 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_milk_page_4_1766722841.json
+2025-12-25 21:20:42 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:20:42 - root - INFO - Extracted 24 products from page 5
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Hata Flavoured Ramune Soda Strawberry 200 ml (bottle) (UPC: 490249409014): $3.49 -> $3.29
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Natrel Organic 2% Filtered Milk 2 L (UPC: 055872520118): $7.79 -> $7.99
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $9.99
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Sealtest 0% Skim Milk 1 L (UPC: 064420001429): $3.95 -> $3.75
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Serge Peanut Punch 250 ml (UPC: 752046105408): $1.29 -> $1.49
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $3.99
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $3.99
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $4.69
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $4.49
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $4.49
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $4.49
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Fairlife 3.25% Whole Milk 1.5 L (bottle) (UPC: 811620021791): $7.49 -> $8.79
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Fairlife 3.25% Whole Milk 1.5 L (bottle) (UPC: 811620021791): $7.49 -> $8.79
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $5.05
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $5.05
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $4.65
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $4.65
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $4.65
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $4.65
+2025-12-25 21:20:42 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $4.65
+2025-12-25 21:20:42 - root - WARNING - Price change detected for San Miguel Chocolait Chocolate Flavoured Drink 3 x 250 ml (UPC: 813327010412): $4.47 -> $4.49
+2025-12-25 21:20:42 - root - WARNING - Price change detected for San Miguel Chocolait Chocolate Flavoured Drink 3 x 250 ml (UPC: 813327010412): $4.47 -> $4.49
+2025-12-25 21:20:42 - root - WARNING - Price change detected for San Miguel Chocolait Chocolate Flavoured Drink 3 x 250 ml (UPC: 813327010412): $4.47 -> $4.49
+2025-12-25 21:20:42 - root - WARNING - Price change detected for San Miguel Chocolait Chocolate Flavoured Drink 3 x 250 ml (UPC: 813327010412): $4.47 -> $4.49
+2025-12-25 21:20:42 - root - WARNING - Price change detected for San Miguel Chocolait Chocolate Flavoured Drink 3 x 250 ml (UPC: 813327010412): $4.47 -> $4.49
+2025-12-25 21:20:42 - root - INFO - Total unique products: 26
+2025-12-25 21:20:42 - root - INFO - Found 26 unique products for 'milk'
+2025-12-25 21:20:42 - root - INFO - 
+============================================================
+2025-12-25 21:20:42 - root - INFO - Searching for: bread
+2025-12-25 21:20:42 - root - INFO - ============================================================
+2025-12-25 21:20:42 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:20:42 - root - WARNING - Request failed (attempt 1/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 1s...
+2025-12-25 21:20:43 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:20:43 - root - WARNING - Request failed (attempt 2/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 2s...
+2025-12-25 21:20:45 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:20:45 - root - ERROR - All 3 attempts failed for https://www.sobeys.com/api/featuredCampaignDataForSearch: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:20:45 - root - WARNING - Could not fetch featured products: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:20:45 - root - INFO - Fetching page 1/5 for query 'bread'...
+2025-12-25 21:20:45 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_bread_page_0_1766722845.json
+2025-12-25 21:20:45 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:20:45 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_bread_page_0_1766722845.json
+2025-12-25 21:20:45 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:20:45 - root - INFO - Extracted 24 products from page 1
+2025-12-25 21:20:51 - root - INFO - Fetching page 2/5 for query 'bread'...
+2025-12-25 21:20:51 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_bread_page_1_1766722851.json
+2025-12-25 21:20:51 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:20:51 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_bread_page_1_1766722851.json
+2025-12-25 21:20:51 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:20:51 - root - INFO - Extracted 24 products from page 2
+2025-12-25 21:20:58 - root - INFO - Fetching page 3/5 for query 'bread'...
+2025-12-25 21:20:58 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_bread_page_2_1766722858.json
+2025-12-25 21:20:58 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:20:58 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_bread_page_2_1766722858.json
+2025-12-25 21:20:58 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:20:58 - root - INFO - Extracted 24 products from page 3
+2025-12-25 21:21:05 - root - INFO - Fetching page 4/5 for query 'bread'...
+2025-12-25 21:21:05 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_bread_page_3_1766722865.json
+2025-12-25 21:21:05 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:21:05 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_bread_page_3_1766722865.json
+2025-12-25 21:21:05 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:21:05 - root - INFO - Extracted 24 products from page 4
+2025-12-25 21:21:10 - root - INFO - Fetching page 5/5 for query 'bread'...
+2025-12-25 21:21:10 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_bread_page_4_1766722870.json
+2025-12-25 21:21:10 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:21:10 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_bread_page_4_1766722870.json
+2025-12-25 21:21:10 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:21:10 - root - INFO - Extracted 24 products from page 5
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.49
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.49
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.49
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $9.49
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $9.49
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $9.49
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $9.49
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:21:10 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:21:10 - root - INFO - Total unique products: 1
+2025-12-25 21:21:10 - root - INFO - Found 1 unique products for 'bread'
+2025-12-25 21:21:10 - root - INFO - 
+============================================================
+2025-12-25 21:21:10 - root - INFO - Searching for: eggs
+2025-12-25 21:21:10 - root - INFO - ============================================================
+2025-12-25 21:21:11 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:21:11 - root - WARNING - Request failed (attempt 1/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 1s...
+2025-12-25 21:21:12 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:21:12 - root - WARNING - Request failed (attempt 2/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 2s...
+2025-12-25 21:21:14 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:21:14 - root - ERROR - All 3 attempts failed for https://www.sobeys.com/api/featuredCampaignDataForSearch: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:21:14 - root - WARNING - Could not fetch featured products: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:21:14 - root - INFO - Fetching page 1/5 for query 'eggs'...
+2025-12-25 21:21:14 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_eggs_page_0_1766722874.json
+2025-12-25 21:21:15 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:21:15 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_eggs_page_0_1766722875.json
+2025-12-25 21:21:15 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:21:15 - root - INFO - Extracted 24 products from page 1
+2025-12-25 21:21:21 - root - INFO - Fetching page 2/5 for query 'eggs'...
+2025-12-25 21:21:21 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_eggs_page_1_1766722881.json
+2025-12-25 21:21:22 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:21:22 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_eggs_page_1_1766722882.json
+2025-12-25 21:21:22 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:21:22 - root - INFO - Extracted 24 products from page 2
+2025-12-25 21:21:27 - root - INFO - Fetching page 3/5 for query 'eggs'...
+2025-12-25 21:21:27 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_eggs_page_2_1766722887.json
+2025-12-25 21:21:28 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:21:28 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_eggs_page_2_1766722888.json
+2025-12-25 21:21:28 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:21:28 - root - INFO - Extracted 24 products from page 3
+2025-12-25 21:21:35 - root - INFO - Fetching page 4/5 for query 'eggs'...
+2025-12-25 21:21:35 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_eggs_page_3_1766722895.json
+2025-12-25 21:21:35 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:21:35 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_eggs_page_3_1766722895.json
+2025-12-25 21:21:35 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:21:35 - root - INFO - Extracted 24 products from page 4
+2025-12-25 21:21:41 - root - INFO - Fetching page 5/5 for query 'eggs'...
+2025-12-25 21:21:41 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_eggs_page_4_1766722901.json
+2025-12-25 21:21:42 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:21:42 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_eggs_page_4_1766722902.json
+2025-12-25 21:21:42 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:21:42 - root - INFO - Extracted 24 products from page 5
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Compliments White Eggs Free Run Large 12 Count (UPC: 055742568950): $6.89 -> $7.19
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Compliments White Eggs Free Run Large 12 Count (UPC: 055742568950): $6.89 -> $6.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Compliments White Eggs Free Run Large 12 Count (UPC: 055742568950): $6.89 -> $6.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Compliments White Eggs Free Run Large 12 Count (UPC: 055742568950): $6.89 -> $6.45
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.49
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.49
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.49
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $2.19
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $2.19
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $2.19
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $2.19
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $2.19
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.99 -> $2.19
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.99 -> $1.39
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.99 -> $1.39
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.99 -> $1.39
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.99 -> $1.39
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.99 -> $1.39
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - WARNING - Price change detected for Yoplait Yop 1% Drinkable Yogurt Raspberry 200 ml (UPC: 056920130280): $1.39 -> $1.99
+2025-12-25 21:21:42 - root - INFO - Total unique products: 9
+2025-12-25 21:21:42 - root - INFO - Found 9 unique products for 'eggs'
+2025-12-25 21:21:42 - root - INFO - 
+============================================================
+2025-12-25 21:21:42 - root - INFO - TOTAL UNIQUE PRODUCTS: 35
+2025-12-25 21:21:42 - root - INFO - ============================================================
+2025-12-25 21:21:42 - root - INFO - 
+Sample products (showing all fields):
+2025-12-25 21:21:42 - root - INFO - 
+  Name: Hata Flavoured Ramune Soda Strawberry 200 ml (bottle)
+2025-12-25 21:21:42 - root - INFO -   Brand: Hata
+2025-12-25 21:21:42 - root - INFO -   Price: $3.29 CAD
+2025-12-25 21:21:42 - root - INFO -   Size: 0.605 KG EA
+2025-12-25 21:21:42 - root - INFO -   Unit Price: 5.44 KG
+2025-12-25 21:21:42 - root - INFO -   Category: Dairy & Eggs > Milk > Flavoured Milk
+2025-12-25 21:21:42 - root - INFO -   Availability: in_stock
+2025-12-25 21:21:42 - root - INFO -   UPC: 490249409014
+2025-12-25 21:21:42 - root - INFO - 
+  Name: Natrel Organic Fat Free  0% Skim Milk  2 L
+2025-12-25 21:21:42 - root - INFO -   Brand: Natrel
+2025-12-25 21:21:42 - root - INFO -   Price: $7.49 CAD
+2025-12-25 21:21:42 - root - INFO -   Size: 2.12 KG EA
+2025-12-25 21:21:42 - root - INFO -   Unit Price: 3.53 KG
+2025-12-25 21:21:42 - root - INFO -   Category: Dairy & Eggs > Milk > Dairy Milk
+2025-12-25 21:21:42 - root - INFO -   Availability: in_stock
+2025-12-25 21:21:42 - root - INFO -   UPC: 055872500110
+2025-12-25 21:21:42 - root - INFO - 
+  Name: Natrel Organic 2% Filtered Milk 2 L
+2025-12-25 21:21:42 - root - INFO -   Brand: Natrel
+2025-12-25 21:21:42 - root - INFO -   Price: $7.79 CAD
+2025-12-25 21:21:42 - root - INFO -   Size: 2.13 KG EA
+2025-12-25 21:21:42 - root - INFO -   Unit Price: 3.66 KG
+2025-12-25 21:21:42 - root - INFO -   Category: Dairy & Eggs > Milk > Dairy Milk
+2025-12-25 21:21:42 - root - INFO -   Availability: in_stock
+2025-12-25 21:21:42 - root - INFO -   UPC: 055872520118
+2025-12-25 21:21:42 - root - INFO - 
+  Name: Natrel Organic 3.25% Filtered Milk  2 L
+2025-12-25 21:21:42 - root - INFO -   Brand: Natrel
+2025-12-25 21:21:42 - root - INFO -   Price: $7.79 CAD
+2025-12-25 21:21:42 - root - INFO -   Size: 2.12 KG EA
+2025-12-25 21:21:42 - root - INFO -   Unit Price: 3.67 KG
+2025-12-25 21:21:42 - root - INFO -   Category: Dairy & Eggs > Milk > Dairy Milk
+2025-12-25 21:21:42 - root - INFO -   Availability: in_stock
+2025-12-25 21:21:42 - root - INFO -   UPC: 055872510119
+2025-12-25 21:21:42 - root - INFO - 
+  Name: Natrel Organic 1% Filtered Milk 2 L
+2025-12-25 21:21:42 - root - INFO -   Brand: Natrel
+2025-12-25 21:21:42 - root - INFO -   Price: $7.49 CAD
+2025-12-25 21:21:42 - root - INFO -   Size: 2.12 KG EA
+2025-12-25 21:21:42 - root - INFO -   Unit Price: 3.53 KG
+2025-12-25 21:21:42 - root - INFO -   Category: Dairy & Eggs > Milk > Dairy Milk
+2025-12-25 21:21:42 - root - INFO -   Availability: in_stock
+2025-12-25 21:21:42 - root - INFO -   UPC: 055872530117
+2025-12-25 21:21:42 - root - INFO - Created backup: data\raw\sobeys\sobeys_products_BACKUP.jsonl
+2025-12-25 21:21:42 - root - INFO - 
+============================================================
+2025-12-25 21:21:42 - root - INFO - ✅ SCRAPING COMPLETE
+2025-12-25 21:21:42 - root - INFO - ============================================================
+2025-12-25 21:21:42 - root - INFO - Saved 35 products to: data\raw\sobeys\sobeys_products.jsonl
+2025-12-25 21:21:42 - root - INFO - File size: 316.91 KB
+2025-12-25 21:24:25 - root - INFO - Logging initialized. Writing to logs\sobeys_2025_december_25.log
+2025-12-25 21:24:25 - root - INFO - Loaded config from C:\Users\ashto\Desktop\First_claude\test_claude\configs\sobeys.json
+2025-12-25 21:24:25 - root - INFO - Created backup: C:\Users\ashto\Desktop\First_claude\test_claude\data\raw\sobeys\sobeys_products_BACKUP.jsonl
+2025-12-25 21:24:25 - root - INFO - Debug mode enabled. Snapshots will be saved to: C:\Users\ashto\Desktop\First_claude\test_claude\data\debug\sobeys
+2025-12-25 21:24:25 - root - INFO - 
+============================================================
+2025-12-25 21:24:25 - root - INFO - Searching for: milk
+2025-12-25 21:24:25 - root - INFO - ============================================================
+2025-12-25 21:24:26 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:24:26 - root - WARNING - Request failed (attempt 1/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 1s...
+2025-12-25 21:24:27 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:24:27 - root - WARNING - Request failed (attempt 2/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 2s...
+2025-12-25 21:24:29 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:24:29 - root - ERROR - All 3 attempts failed for https://www.sobeys.com/api/featuredCampaignDataForSearch: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:24:29 - root - WARNING - Could not fetch featured products: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:24:29 - root - INFO - Fetching page 1/5 for query 'milk'...
+2025-12-25 21:24:29 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_milk_page_0_1766723069.json
+2025-12-25 21:24:29 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:24:29 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_milk_page_0_1766723069.json
+2025-12-25 21:24:29 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:24:29 - root - INFO - Extracted 24 products from page 1
+2025-12-25 21:24:36 - root - INFO - Fetching page 2/5 for query 'milk'...
+2025-12-25 21:24:36 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_milk_page_1_1766723076.json
+2025-12-25 21:24:36 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:24:36 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_milk_page_1_1766723076.json
+2025-12-25 21:24:36 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:24:36 - root - INFO - Extracted 24 products from page 2
+2025-12-25 21:24:41 - root - INFO - Fetching page 3/5 for query 'milk'...
+2025-12-25 21:24:41 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_milk_page_2_1766723081.json
+2025-12-25 21:24:42 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:24:42 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_milk_page_2_1766723082.json
+2025-12-25 21:24:42 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:24:42 - root - INFO - Extracted 24 products from page 3
+2025-12-25 21:24:49 - root - INFO - Fetching page 4/5 for query 'milk'...
+2025-12-25 21:24:49 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_milk_page_3_1766723089.json
+2025-12-25 21:24:49 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:24:49 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_milk_page_3_1766723089.json
+2025-12-25 21:24:49 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:24:49 - root - INFO - Extracted 24 products from page 4
+2025-12-25 21:24:55 - root - INFO - Fetching page 5/5 for query 'milk'...
+2025-12-25 21:24:55 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_milk_page_4_1766723095.json
+2025-12-25 21:24:55 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:24:55 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_milk_page_4_1766723095.json
+2025-12-25 21:24:55 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:24:55 - root - INFO - Extracted 24 products from page 5
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Hata Flavoured Ramune Soda Strawberry 200 ml (bottle) (UPC: 490249409014): $3.49 -> $3.29
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Natrel Organic 2% Filtered Milk 2 L (UPC: 055872520118): $7.79 -> $7.99
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $9.99
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Binggrae Flavored Milk Banana 6 x 200 ml (UPC: 769828221607): $8.49 -> $8.79
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Sealtest 0% Skim Milk 1 L (UPC: 064420001429): $3.95 -> $3.75
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Serge Peanut Punch 250 ml (UPC: 752046105408): $1.29 -> $1.49
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $3.99
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $3.99
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $4.69
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $4.49
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $4.49
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Foco 100% Coconut Water 1 L (UPC: 016229914578): $3.49 -> $4.49
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Fairlife 3.25% Whole Milk 1.5 L (bottle) (UPC: 811620021791): $7.49 -> $8.79
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Fairlife 3.25% Whole Milk 1.5 L (bottle) (UPC: 811620021791): $7.49 -> $8.79
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $5.05
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $5.05
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $4.65
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $4.65
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $4.65
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $4.65
+2025-12-25 21:24:55 - root - WARNING - Price change detected for Natrel Lactose-Free 0% Milk 1 L (UPC: 064420154019): $4.99 -> $4.65
+2025-12-25 21:24:55 - root - WARNING - Price change detected for San Miguel Chocolait Chocolate Flavoured Drink 3 x 250 ml (UPC: 813327010412): $4.47 -> $4.49
+2025-12-25 21:24:55 - root - WARNING - Price change detected for San Miguel Chocolait Chocolate Flavoured Drink 3 x 250 ml (UPC: 813327010412): $4.47 -> $4.49
+2025-12-25 21:24:55 - root - WARNING - Price change detected for San Miguel Chocolait Chocolate Flavoured Drink 3 x 250 ml (UPC: 813327010412): $4.47 -> $4.49
+2025-12-25 21:24:55 - root - WARNING - Price change detected for San Miguel Chocolait Chocolate Flavoured Drink 3 x 250 ml (UPC: 813327010412): $4.47 -> $4.49
+2025-12-25 21:24:55 - root - WARNING - Price change detected for San Miguel Chocolait Chocolate Flavoured Drink 3 x 250 ml (UPC: 813327010412): $4.47 -> $4.49
+2025-12-25 21:24:55 - root - INFO - Total unique products: 26
+2025-12-25 21:24:55 - root - INFO - Found 26 unique products for 'milk'
+2025-12-25 21:24:55 - root - INFO - 
+============================================================
+2025-12-25 21:24:55 - root - INFO - Searching for: bread
+2025-12-25 21:24:55 - root - INFO - ============================================================
+2025-12-25 21:24:56 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:24:56 - root - WARNING - Request failed (attempt 1/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 1s...
+2025-12-25 21:24:57 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:24:57 - root - WARNING - Request failed (attempt 2/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 2s...
+2025-12-25 21:24:59 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:24:59 - root - ERROR - All 3 attempts failed for https://www.sobeys.com/api/featuredCampaignDataForSearch: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:24:59 - root - WARNING - Could not fetch featured products: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:24:59 - root - INFO - Fetching page 1/5 for query 'bread'...
+2025-12-25 21:24:59 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_bread_page_0_1766723099.json
+2025-12-25 21:24:59 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:24:59 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_bread_page_0_1766723099.json
+2025-12-25 21:24:59 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:24:59 - root - INFO - Extracted 24 products from page 1
+2025-12-25 21:25:05 - root - INFO - Fetching page 2/5 for query 'bread'...
+2025-12-25 21:25:05 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_bread_page_1_1766723105.json
+2025-12-25 21:25:06 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:25:06 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_bread_page_1_1766723106.json
+2025-12-25 21:25:06 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:25:06 - root - INFO - Extracted 24 products from page 2
+2025-12-25 21:25:13 - root - INFO - Fetching page 3/5 for query 'bread'...
+2025-12-25 21:25:13 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_bread_page_2_1766723113.json
+2025-12-25 21:25:13 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:25:13 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_bread_page_2_1766723113.json
+2025-12-25 21:25:13 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:25:13 - root - INFO - Extracted 24 products from page 3
+2025-12-25 21:25:20 - root - INFO - Fetching page 4/5 for query 'bread'...
+2025-12-25 21:25:20 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_bread_page_3_1766723120.json
+2025-12-25 21:25:20 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:25:20 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_bread_page_3_1766723120.json
+2025-12-25 21:25:20 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:25:20 - root - INFO - Extracted 24 products from page 4
+2025-12-25 21:25:26 - root - INFO - Fetching page 5/5 for query 'bread'...
+2025-12-25 21:25:26 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_bread_page_4_1766723126.json
+2025-12-25 21:25:26 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:25:26 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_bread_page_4_1766723126.json
+2025-12-25 21:25:26 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:25:26 - root - INFO - Extracted 24 products from page 5
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $10.29
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.49
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.49
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.49
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $10.99 -> $9.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $9.49
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $9.49
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $9.49
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $9.49
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - WARNING - Price change detected for Schär Gluten-Free White Bread Artisan Baker 400 g (UPC: 810757011255): $9.99 -> $10.99
+2025-12-25 21:25:26 - root - INFO - Total unique products: 1
+2025-12-25 21:25:26 - root - INFO - Found 1 unique products for 'bread'
+2025-12-25 21:25:26 - root - INFO - 
+============================================================
+2025-12-25 21:25:26 - root - INFO - Searching for: eggs
+2025-12-25 21:25:26 - root - INFO - ============================================================
+2025-12-25 21:25:27 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:25:27 - root - WARNING - Request failed (attempt 1/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 1s...
+2025-12-25 21:25:28 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:25:28 - root - WARNING - Request failed (attempt 2/3): Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403. Retrying in 2s...
+2025-12-25 21:25:30 - httpx - INFO - HTTP Request: GET https://www.sobeys.com/api/featuredCampaignDataForSearch "HTTP/1.1 403 Forbidden"
+2025-12-25 21:25:30 - root - ERROR - All 3 attempts failed for https://www.sobeys.com/api/featuredCampaignDataForSearch: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:25:30 - root - WARNING - Could not fetch featured products: Client error '403 Forbidden' for url 'https://www.sobeys.com/api/featuredCampaignDataForSearch'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-12-25 21:25:30 - root - INFO - Fetching page 1/5 for query 'eggs'...
+2025-12-25 21:25:30 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_eggs_page_0_1766723130.json
+2025-12-25 21:25:30 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:25:30 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_eggs_page_0_1766723130.json
+2025-12-25 21:25:30 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:25:30 - root - INFO - Extracted 24 products from page 1
+2025-12-25 21:25:38 - root - INFO - Fetching page 2/5 for query 'eggs'...
+2025-12-25 21:25:38 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_eggs_page_1_1766723138.json
+2025-12-25 21:25:38 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:25:38 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_eggs_page_1_1766723138.json
+2025-12-25 21:25:38 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:25:38 - root - INFO - Extracted 24 products from page 2
+2025-12-25 21:25:44 - root - INFO - Fetching page 3/5 for query 'eggs'...
+2025-12-25 21:25:44 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_eggs_page_2_1766723144.json
+2025-12-25 21:25:44 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:25:44 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_eggs_page_2_1766723144.json
+2025-12-25 21:25:44 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:25:44 - root - INFO - Extracted 24 products from page 3
+2025-12-25 21:25:51 - root - INFO - Fetching page 4/5 for query 'eggs'...
+2025-12-25 21:25:51 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_eggs_page_3_1766723151.json
+2025-12-25 21:25:52 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:25:52 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_eggs_page_3_1766723152.json
+2025-12-25 21:25:52 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:25:52 - root - INFO - Extracted 24 products from page 4
+2025-12-25 21:25:57 - root - INFO - Fetching page 5/5 for query 'eggs'...
+2025-12-25 21:25:57 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_request_eggs_page_4_1766723157.json
+2025-12-25 21:25:57 - httpx - INFO - HTTP Request: POST https://acsyshf8au-dsn.algolia.net/1/indexes/*/queries "HTTP/1.1 200 OK"
+2025-12-25 21:25:58 - root - INFO - [DEBUG_SNAPSHOT] Saved json snapshot: algolia_response_eggs_page_4_1766723157.json
+2025-12-25 21:25:58 - root - INFO - Algolia returned 24 hits
+2025-12-25 21:25:58 - root - INFO - Extracted 24 products from page 5
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments White Eggs Free Run Large 12 Count (UPC: 055742568950): $6.89 -> $7.19
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments White Eggs Free Run Large 12 Count (UPC: 055742568950): $6.89 -> $6.99
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments White Eggs Free Run Large 12 Count (UPC: 055742568950): $6.89 -> $6.99
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments White Eggs Free Run Large 12 Count (UPC: 055742568950): $6.89 -> $6.45
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Maritime Pride Omega 3 White Eggs Grade A Large 12 Count (UPC: 770004144030): $6.99 -> $6.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Naturegg Fat-Free Simply Egg Whites 1 kg (UPC: 065651002476): $11.49 -> $11.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Naturegg Fat-Free Simply Egg Whites 1 kg (UPC: 065651002476): $11.49 -> $11.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Naturegg Fat-Free Simply Egg Whites 1 kg (UPC: 065651002476): $11.49 -> $11.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Naturegg Fat-Free Simply Egg Whites 1 kg (UPC: 065651002476): $11.49 -> $11.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Naturegg Fat-Free Simply Egg Whites 1 kg (UPC: 065651002476): $11.49 -> $11.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $5.49 -> $6.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $6.49 -> $5.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $6.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $6.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $6.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $6.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $6.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $6.49 -> $5.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $6.49 -> $5.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $6.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Eggs2Go Omega 3 Eggs Hard Boiled & Peeled 6 Count (UPC: 065651024225): $6.49 -> $6.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments Cozy Coop Eggs Large 12 Count (UPC: 055742567915): $5.69 -> $5.75
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Maritime Pride Omega 3 White Eggs Grade A Large 12 Count (UPC: 770004144030): $6.99 -> $6.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments Omega 3 White Eggs Free Run Large 12 Count (UPC: 055742568912): $7.49 -> $7.19
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments Omega 3 White Eggs Free Run Large 12 Count (UPC: 055742568912): $7.19 -> $7.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments Omega 3 White Eggs Free Run Large 12 Count (UPC: 055742568912): $7.19 -> $7.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments Omega 3 White Eggs Free Run Large 12 Count (UPC: 055742568912): $7.19 -> $6.99
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Naturegg Fat-Free Simply Egg Whites 1 kg (UPC: 065651002476): $11.49 -> $9.99
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Naturegg Fat-Free Simply Egg Whites 1 kg (UPC: 065651002476): $9.99 -> $11.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Naturegg Fat-Free Simply Egg Whites 1 kg (UPC: 065651002476): $9.99 -> $11.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Naturegg Fat-Free Simply Egg Whites 1 kg (UPC: 065651002476): $9.99 -> $11.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Burnbrae Farms Naturegg Fat-Free Simply Egg Whites 1 kg (UPC: 065651002476): $9.99 -> $11.29
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments Organic Brown Eggs Free Range Grade A Large 12 Count (UPC: 055742367294): $8.19 -> $8.09
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments Organic Brown Eggs Free Range Grade A Large 12 Count (UPC: 055742367294): $8.09 -> $8.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments Organic Brown Eggs Free Range Grade A Large 12 Count (UPC: 055742367294): $8.09 -> $8.49
+2025-12-25 21:25:58 - root - WARNING - Price change detected for Compliments Organic Brown Eggs Free Range Grade A Large 12 Count (UPC: 055742367294): $8.09 -> $8.49
+2025-12-25 21:25:58 - root - INFO - Total unique products: 24
+2025-12-25 21:25:58 - root - INFO - Found 24 unique products for 'eggs'
+2025-12-25 21:25:58 - root - INFO - 
+============================================================
+2025-12-25 21:25:58 - root - INFO - TOTAL UNIQUE PRODUCTS: 50
+2025-12-25 21:25:58 - root - INFO - ============================================================
+2025-12-25 21:25:58 - root - INFO - 
+Sample products (showing all fields):
+2025-12-25 21:25:58 - root - INFO - 
+  Name: Hata Flavoured Ramune Soda Strawberry 200 ml (bottle)
+2025-12-25 21:25:58 - root - INFO -   Brand: Hata
+2025-12-25 21:25:58 - root - INFO -   Price: $3.29 CAD
+2025-12-25 21:25:58 - root - INFO -   Size: 0.605 KG EA
+2025-12-25 21:25:58 - root - INFO -   Unit Price: 5.44 KG
+2025-12-25 21:25:58 - root - INFO -   Category: Dairy & Eggs > Milk > Flavoured Milk
+2025-12-25 21:25:58 - root - INFO -   Availability: in_stock
+2025-12-25 21:25:58 - root - INFO -   UPC: 490249409014
+2025-12-25 21:25:58 - root - INFO - 
+  Name: Natrel Organic Fat Free  0% Skim Milk  2 L
+2025-12-25 21:25:58 - root - INFO -   Brand: Natrel
+2025-12-25 21:25:58 - root - INFO -   Price: $7.49 CAD
+2025-12-25 21:25:58 - root - INFO -   Size: 2.12 KG EA
+2025-12-25 21:25:58 - root - INFO -   Unit Price: 3.53 KG
+2025-12-25 21:25:58 - root - INFO -   Category: Dairy & Eggs > Milk > Dairy Milk
+2025-12-25 21:25:58 - root - INFO -   Availability: in_stock
+2025-12-25 21:25:58 - root - INFO -   UPC: 055872500110
+2025-12-25 21:25:58 - root - INFO - 
+  Name: Natrel Organic 2% Filtered Milk 2 L
+2025-12-25 21:25:58 - root - INFO -   Brand: Natrel
+2025-12-25 21:25:58 - root - INFO -   Price: $7.79 CAD
+2025-12-25 21:25:58 - root - INFO -   Size: 2.13 KG EA
+2025-12-25 21:25:58 - root - INFO -   Unit Price: 3.66 KG
+2025-12-25 21:25:58 - root - INFO -   Category: Dairy & Eggs > Milk > Dairy Milk
+2025-12-25 21:25:58 - root - INFO -   Availability: in_stock
+2025-12-25 21:25:58 - root - INFO -   UPC: 055872520118
+2025-12-25 21:25:58 - root - INFO - 
+  Name: Natrel Organic 3.25% Filtered Milk  2 L
+2025-12-25 21:25:58 - root - INFO -   Brand: Natrel
+2025-12-25 21:25:58 - root - INFO -   Price: $7.79 CAD
+2025-12-25 21:25:58 - root - INFO -   Size: 2.12 KG EA
+2025-12-25 21:25:58 - root - INFO -   Unit Price: 3.67 KG
+2025-12-25 21:25:58 - root - INFO -   Category: Dairy & Eggs > Milk > Dairy Milk
+2025-12-25 21:25:58 - root - INFO -   Availability: in_stock
+2025-12-25 21:25:58 - root - INFO -   UPC: 055872510119
+2025-12-25 21:25:58 - root - INFO - 
+  Name: Natrel Organic 1% Filtered Milk 2 L
+2025-12-25 21:25:58 - root - INFO -   Brand: Natrel
+2025-12-25 21:25:58 - root - INFO -   Price: $7.49 CAD
+2025-12-25 21:25:58 - root - INFO -   Size: 2.12 KG EA
+2025-12-25 21:25:58 - root - INFO -   Unit Price: 3.53 KG
+2025-12-25 21:25:58 - root - INFO -   Category: Dairy & Eggs > Milk > Dairy Milk
+2025-12-25 21:25:58 - root - INFO -   Availability: in_stock
+2025-12-25 21:25:58 - root - INFO -   UPC: 055872530117
+2025-12-25 21:25:58 - root - INFO - Created backup: data\raw\sobeys\sobeys_products_BACKUP.jsonl
+2025-12-25 21:25:58 - root - INFO - 
+============================================================
+2025-12-25 21:25:58 - root - INFO - ✅ SCRAPING COMPLETE
+2025-12-25 21:25:58 - root - INFO - ============================================================
+2025-12-25 21:25:58 - root - INFO - Saved 50 products to: data\raw\sobeys\sobeys_products.jsonl
+2025-12-25 21:25:58 - root - INFO - File size: 425.82 KB
