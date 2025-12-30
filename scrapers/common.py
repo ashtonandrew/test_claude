@@ -263,33 +263,255 @@ def save_json_file(file_path: Path, data: Dict, indent: int = 2):
         json.dump(data, f, ensure_ascii=False, indent=indent)
 
 
-def backup_data_file(file_path: Path) -> bool:
+def backup_data_file(file_path: Path, max_backups: int = 5, compress: bool = False) -> Optional[Path]:
     """
-    Create a backup of an existing data file before overwriting.
-    Backup is named with _BACKUP suffix (e.g., sobeys_products.jsonl -> sobeys_products_BACKUP.jsonl).
-    If a backup already exists, it will be overwritten.
+    Create a timestamped backup of an existing data file with retention policy.
+    Backups are named with timestamp (e.g., sobeys_products_2025-12-30_143022.jsonl).
+    Old backups beyond max_backups are automatically cleaned up.
 
     Args:
         file_path: Path to the data file to backup
+        max_backups: Maximum number of backups to retain (default: 5)
+        compress: Whether to gzip compress the backup (default: False)
 
     Returns:
-        True if backup was created, False if source file doesn't exist
+        Path to created backup, or None if source file doesn't exist
     """
     if not file_path.exists():
         logging.debug(f"No existing file to backup: {file_path}")
-        return False
+        return None
 
-    # Create backup filename by inserting _BACKUP before the extension
-    backup_path = file_path.parent / f"{file_path.stem}_BACKUP{file_path.suffix}"
+    # Create timestamped backup filename
+    timestamp = datetime.now().strftime('%Y-%m-%d_%H%M%S')
+    backup_name = f"{file_path.stem}_{timestamp}{file_path.suffix}"
+
+    # Create backups subdirectory
+    backup_dir = file_path.parent / 'backups'
+    backup_dir.mkdir(parents=True, exist_ok=True)
+    backup_path = backup_dir / backup_name
 
     try:
-        # Copy the file to backup location (overwrite if backup exists)
-        shutil.copy2(file_path, backup_path)
+        if compress:
+            import gzip
+            backup_path = backup_path.with_suffix(backup_path.suffix + '.gz')
+            with open(file_path, 'rb') as f_in:
+                with gzip.open(backup_path, 'wb') as f_out:
+                    shutil.copyfileobj(f_in, f_out)
+        else:
+            shutil.copy2(file_path, backup_path)
+
         logging.info(f"Created backup: {backup_path}")
-        return True
+
+        # Clean up old backups beyond retention limit
+        cleanup_old_backups(file_path, max_backups)
+
+        return backup_path
     except Exception as e:
         logging.error(f"Failed to create backup of {file_path}: {e}")
+        return None
+
+
+def cleanup_old_backups(file_path: Path, max_backups: int = 5) -> int:
+    """
+    Remove old backups beyond the retention limit, keeping the most recent ones.
+
+    Args:
+        file_path: Path to the original data file (backups are in sibling 'backups' dir)
+        max_backups: Maximum number of backups to retain
+
+    Returns:
+        Number of backups removed
+    """
+    backup_dir = file_path.parent / 'backups'
+    if not backup_dir.exists():
+        return 0
+
+    # Find all backups for this file (with or without .gz extension)
+    pattern = f"{file_path.stem}_*{file_path.suffix}*"
+    backups = sorted(backup_dir.glob(pattern), key=lambda p: p.stat().st_mtime, reverse=True)
+
+    removed_count = 0
+    for old_backup in backups[max_backups:]:
+        try:
+            old_backup.unlink()
+            logging.debug(f"Removed old backup: {old_backup.name}")
+            removed_count += 1
+        except Exception as e:
+            logging.warning(f"Failed to remove old backup {old_backup}: {e}")
+
+    if removed_count > 0:
+        logging.info(f"Cleaned up {removed_count} old backup(s)")
+
+    return removed_count
+
+
+def list_backups(file_path: Path) -> List[Dict]:
+    """
+    List all available backups for a data file.
+
+    Args:
+        file_path: Path to the original data file
+
+    Returns:
+        List of dicts with backup info (path, size, modified time)
+    """
+    backup_dir = file_path.parent / 'backups'
+    if not backup_dir.exists():
+        return []
+
+    pattern = f"{file_path.stem}_*{file_path.suffix}*"
+    backups = sorted(backup_dir.glob(pattern), key=lambda p: p.stat().st_mtime, reverse=True)
+
+    result = []
+    for backup in backups:
+        stat = backup.stat()
+        result.append({
+            'path': backup,
+            'name': backup.name,
+            'size_bytes': stat.st_size,
+            'size_mb': round(stat.st_size / (1024 * 1024), 2),
+            'modified': datetime.fromtimestamp(stat.st_mtime).isoformat(),
+            'compressed': backup.suffix == '.gz'
+        })
+
+    return result
+
+
+def restore_backup(backup_path: Path, target_path: Path = None) -> bool:
+    """
+    Restore a data file from a backup.
+
+    Args:
+        backup_path: Path to the backup file
+        target_path: Where to restore (defaults to original location without timestamp)
+
+    Returns:
+        True if restored successfully, False otherwise
+    """
+    if not backup_path.exists():
+        logging.error(f"Backup file not found: {backup_path}")
         return False
+
+    # Determine target path if not provided
+    if target_path is None:
+        # Extract original filename by removing timestamp
+        # e.g., sobeys_products_2025-12-30_143022.jsonl -> sobeys_products.jsonl
+        name = backup_path.name
+        if backup_path.suffix == '.gz':
+            name = backup_path.stem  # Remove .gz
+
+        # Remove timestamp portion (_YYYY-MM-DD_HHMMSS)
+        import re
+        original_name = re.sub(r'_\d{4}-\d{2}-\d{2}_\d{6}', '', name)
+        target_path = backup_path.parent.parent / original_name
+
+    try:
+        if backup_path.suffix == '.gz':
+            import gzip
+            with gzip.open(backup_path, 'rb') as f_in:
+                with open(target_path, 'wb') as f_out:
+                    shutil.copyfileobj(f_in, f_out)
+        else:
+            shutil.copy2(backup_path, target_path)
+
+        logging.info(f"Restored backup to: {target_path}")
+        return True
+    except Exception as e:
+        logging.error(f"Failed to restore backup: {e}")
+        return False
+
+
+def purge_debug_files(debug_dir: Path, older_than_days: int = 0) -> int:
+    """
+    Purge debug/temporary files from a directory.
+
+    Args:
+        debug_dir: Directory containing debug files to purge
+        older_than_days: Only purge files older than this many days (0 = all files)
+
+    Returns:
+        Number of files purged
+    """
+    if not debug_dir.exists():
+        logging.debug(f"Debug directory does not exist: {debug_dir}")
+        return 0
+
+    cutoff_time = None
+    if older_than_days > 0:
+        cutoff_time = datetime.now().timestamp() - (older_than_days * 86400)
+
+    purged_count = 0
+    for file_path in debug_dir.rglob('*'):
+        if file_path.is_file():
+            if cutoff_time is None or file_path.stat().st_mtime < cutoff_time:
+                try:
+                    file_path.unlink()
+                    purged_count += 1
+                except Exception as e:
+                    logging.warning(f"Failed to purge {file_path}: {e}")
+
+    # Remove empty directories
+    for dir_path in sorted(debug_dir.rglob('*'), reverse=True):
+        if dir_path.is_dir():
+            try:
+                dir_path.rmdir()  # Only removes if empty
+            except OSError:
+                pass  # Directory not empty
+
+    # Try to remove the debug_dir itself if empty
+    try:
+        debug_dir.rmdir()
+    except OSError:
+        pass
+
+    if purged_count > 0:
+        logging.info(f"Purged {purged_count} debug file(s) from {debug_dir}")
+
+    return purged_count
+
+
+def cleanup_workspace(project_root: Path, purge_debug: bool = True,
+                      max_backup_age_days: int = 30) -> Dict:
+    """
+    Comprehensive workspace cleanup: purge debug files and old backups.
+
+    Args:
+        project_root: Project root directory
+        purge_debug: Whether to purge debug files (default: True)
+        max_backup_age_days: Remove backups older than this (default: 30 days)
+
+    Returns:
+        Dict with cleanup statistics
+    """
+    stats = {
+        'debug_files_purged': 0,
+        'old_backups_removed': 0,
+        'old_logs_archived': 0
+    }
+
+    # Purge debug files
+    if purge_debug:
+        debug_dir = project_root / 'data' / 'debug'
+        stats['debug_files_purged'] = purge_debug_files(debug_dir)
+
+    # Clean up old backups across all raw data directories
+    raw_data_dir = project_root / 'data' / 'raw'
+    if raw_data_dir.exists():
+        for site_dir in raw_data_dir.iterdir():
+            if site_dir.is_dir():
+                backup_dir = site_dir / 'backups'
+                if backup_dir.exists():
+                    cutoff_time = datetime.now().timestamp() - (max_backup_age_days * 86400)
+                    for backup in backup_dir.glob('*'):
+                        if backup.is_file() and backup.stat().st_mtime < cutoff_time:
+                            try:
+                                backup.unlink()
+                                stats['old_backups_removed'] += 1
+                            except Exception as e:
+                                logging.warning(f"Failed to remove old backup {backup}: {e}")
+
+    logging.info(f"Workspace cleanup complete: {stats}")
+    return stats
 
 
 # =============================================================================

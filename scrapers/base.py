@@ -24,7 +24,11 @@ from scrapers.common import (
     ensure_data_directories,
     RateLimiter,
     get_dated_log_path,
-    backup_data_file
+    backup_data_file,
+    list_backups,
+    restore_backup,
+    purge_debug_files,
+    cleanup_workspace
 )
 
 
@@ -50,6 +54,7 @@ class ProductRecord:
     image_url: Optional[str]
     category_path: Optional[str]
     availability: str  # "in_stock" | "out_of_stock" | "unknown"
+    query_category: Optional[str]  # Search query that found this product
     raw_source: Optional[Dict]  # Minimal structured snippet
 
     def to_dict(self) -> Dict:
@@ -235,10 +240,14 @@ class BaseScraper(ABC):
         self.checkpoint_path = checkpoints_dir / f"{self.site_slug}_checkpoint.json"
 
     def _backup_existing_data(self):
-        """Create backup of existing data file before starting new scrape run."""
-        backup_data_file(self.jsonl_path)
+        """Create timestamped backup of existing data file before starting new scrape run."""
+        # Get backup settings from config (with sensible defaults)
+        max_backups = self.config.get('max_backups', 5)
+        compress_backups = self.config.get('compress_backups', False)
+
+        backup_data_file(self.jsonl_path, max_backups=max_backups, compress=compress_backups)
         # Also backup CSV if it exists
-        backup_data_file(self.csv_path)
+        backup_data_file(self.csv_path, max_backups=max_backups, compress=compress_backups)
 
     def load_checkpoint(self) -> Dict:
         """Load checkpoint data."""
