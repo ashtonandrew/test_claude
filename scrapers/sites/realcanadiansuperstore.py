@@ -18,12 +18,13 @@ from scrapers.common import get_iso_timestamp, retry_on_exception
 class RealcanadiansuperstoreScraper(BaseScraper):
     """Scraper for Real Canadian Superstore (Loblaw network)."""
 
-    def __init__(self, config_path, project_root, headless=True):
-        super().__init__(config_path, project_root)
+    def __init__(self, config_path, project_root, headless=True, fresh_start=False):
+        super().__init__(config_path, project_root, fresh_start=fresh_start)
 
         self.base_url = self.config['base_url']
         self.session = requests.Session()
         self.session.headers.update(self.config.get('headers', {}))
+        self.current_query = None  # Track current search query for ProductRecord
 
     @retry_on_exception(max_retries=3, exceptions=(requests.RequestException,))
     def _fetch_page(self, url: str) -> Optional[str]:
@@ -252,6 +253,7 @@ class RealcanadiansuperstoreScraper(BaseScraper):
             image_url=raw_data.get('image'),
             category_path=None,  # Not available in JSON-LD
             availability=self._parse_availability(offers.get('availability', '')),
+            query_category=self.current_query,
             raw_source={'type': 'json-ld', 'data': raw_data}
         )
 
@@ -333,6 +335,7 @@ class RealcanadiansuperstoreScraper(BaseScraper):
             image_url=image_url,
             category_path=category_path,
             availability=self._parse_inventory_indicator_new(inventory_indicator),
+            query_category=self.current_query,
             raw_source={'type': 'next-data', 'data': raw_data}
         )
 
@@ -432,13 +435,32 @@ class RealcanadiansuperstoreScraper(BaseScraper):
                 total_scraped += saved
                 logging.info(f"Page {page}: Saved {saved}/{len(products)} products")
 
-                # Check pagination
-                pagination_info = self._get_pagination_info(soup)
-                if pagination_info and not pagination_info.get('hasMore', False):
-                    logging.info("No more pages available")
-                    break
-
+                # Increment pages_processed counter BEFORE pagination check
                 self.stats['pages_processed'] += 1
+
+                # Check pagination - determine if there are more pages
+                pagination_info = self._get_pagination_info(soup)
+
+                if pagination_info:
+                    logging.debug(f"Pagination info found: {pagination_info}")
+                    has_more = pagination_info.get('hasMore', None)
+                    total_pages = pagination_info.get('totalPages', None)
+                    current_page = pagination_info.get('pageNumber', page)
+
+                    # Check if we've reached the end based on pagination data
+                    if has_more is False:
+                        logging.info("No more pages available (hasMore=False)")
+                        break
+                    elif total_pages and current_page >= total_pages:
+                        logging.info(f"Reached last page ({current_page}/{total_pages})")
+                        break
+                else:
+                    # No pagination info found - use product count as fallback
+                    # If we got fewer products than expected, likely no more pages
+                    logging.debug("No pagination info found, using product count heuristic")
+                    # Continue to next page - products found means there might be more
+                    # Only stop if we got 0 products (handled above)
+
                 page += 1
 
             except Exception as e:
@@ -459,6 +481,7 @@ class RealcanadiansuperstoreScraper(BaseScraper):
         Returns:
             Total number of products scraped
         """
+        self.current_query = query  # Track query for ProductRecord
         search_url = self.config.get('search_url_pattern', '/search')
         search_url = f"{search_url}?search-bar={query}"
 

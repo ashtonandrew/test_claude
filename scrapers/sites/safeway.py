@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """
 Safeway scraper (Sobeys Network) - Enhanced Stealth Version
-Uses Google Search navigation for maximum stealth.
-Requires JavaScript rendering via Playwright.
+Uses Algolia API as primary extraction method with Playwright fallback.
+Requires JavaScript rendering via Playwright for fallback.
 """
 
 import json
 import logging
 import random
 import time
-from typing import Optional, List, Dict
+import re
+import requests
+from typing import Optional, List, Dict, Tuple
 from playwright.sync_api import sync_playwright, Page, Browser, BrowserContext
 
 from scrapers.base import BaseScraper, ProductRecord
@@ -17,10 +19,16 @@ from scrapers.common import get_iso_timestamp
 
 
 class SafewayScraper(BaseScraper):
-    """Scraper for Safeway (Sobeys network) using stealth Playwright with Google navigation."""
+    """Scraper for Safeway (Sobeys network) using Algolia API with Playwright fallback."""
 
-    def __init__(self, config_path, project_root, headless=True):
-        super().__init__(config_path, project_root)
+    # Algolia API configuration (shared across Sobeys network)
+    ALGOLIA_APP_ID = "ACSYSHF8AU"
+    ALGOLIA_API_KEY = "fe555974f588b3e76ad0f1c548113b22"
+    ALGOLIA_BASE_URL = "https://acsyshf8au-dsn.algolia.net"
+    ALGOLIA_INDEX = "dxp_product_en"
+
+    def __init__(self, config_path, project_root, headless=True, fresh_start=False):
+        super().__init__(config_path, project_root, fresh_start=fresh_start)
 
         self.base_url = self.config['base_url']
         self.headless = headless
@@ -32,10 +40,162 @@ class SafewayScraper(BaseScraper):
         self.browser: Optional[Browser] = None
         self.context: Optional[BrowserContext] = None
         self.store_selected = False
-        
+        self.current_query = None  # Track current search query for ProductRecord
+
         # Google navigation settings
         self.use_google_navigation = self.config.get('use_google_navigation', True)
         self.search_term = self.config.get('google_search_term', 'safeway')
+
+        # Algolia session for API requests
+        self.algolia_session = requests.Session()
+        self.algolia_session.headers.update(self._get_algolia_headers())
+
+    def _get_algolia_headers(self) -> Dict[str, str]:
+        """Get headers for Algolia API requests."""
+        # Algolia requires sobeys.com referer (shared backend for Sobeys network)
+        return {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            "Accept": "application/json",
+            "x-algolia-api-key": self.ALGOLIA_API_KEY,
+            "x-algolia-application-id": self.ALGOLIA_APP_ID,
+            "x-algolia-agent": "Algolia for JavaScript (5.46.2); Search (5.46.2); Browser",
+            "Content-Type": "application/json",
+            "Origin": "https://www.sobeys.com",
+            "Referer": "https://www.sobeys.com/",
+        }
+
+    def _search_algolia(self, query: str, page: int = 0, hits_per_page: int = 48) -> Tuple[List[ProductRecord], Dict]:
+        """
+        Search products using Algolia API.
+
+        Args:
+            query: Search term
+            page: Page number (0-indexed)
+            hits_per_page: Results per page
+
+        Returns:
+            Tuple of (list of ProductRecords, page_info dict)
+        """
+        url = f"{self.ALGOLIA_BASE_URL}/1/indexes/*/queries"
+
+        body = {
+            "requests": [
+                {
+                    "indexName": self.ALGOLIA_INDEX,
+                    "params": f"query={query}&hitsPerPage={hits_per_page}&page={page}"
+                }
+            ]
+        }
+
+        try:
+            self.rate_limiter.wait()
+            response = self.algolia_session.post(url, json=body, timeout=30)
+            response.raise_for_status()
+            data = response.json()
+
+            if "results" in data and len(data["results"]) > 0:
+                result = data["results"][0]
+                hits = result.get("hits", [])
+                logging.info(f"Algolia returned {len(hits)} hits for '{query}' (page {page + 1})")
+
+                page_info = {
+                    'nbHits': result.get('nbHits', 0),
+                    'nbPages': result.get('nbPages', 0),
+                    'page': result.get('page', 0),
+                    'hitsPerPage': result.get('hitsPerPage', hits_per_page)
+                }
+
+                products = []
+                for hit in hits:
+                    product = self._parse_algolia_hit(hit)
+                    if product:
+                        products.append(product)
+
+                return products, page_info
+
+        except Exception as e:
+            logging.error(f"Algolia search failed: {e}")
+
+        return [], {}
+
+    def _parse_algolia_hit(self, hit: Dict) -> Optional[ProductRecord]:
+        """Parse an Algolia hit into a ProductRecord."""
+        try:
+            name = hit.get("name") or hit.get("title") or hit.get("pageSlug", "")
+            if not name:
+                return None
+
+            price = hit.get("price")
+            if price is not None:
+                price = float(price)
+
+            brand = hit.get("brand") or hit.get("manufacturer")
+
+            size_text = hit.get("weight") or hit.get("size") or hit.get("priceQuantity")
+            if size_text and hit.get("uom"):
+                size_text = f"{size_text} {hit.get('uom')}"
+
+            # Calculate unit price
+            unit_price = None
+            unit_price_uom = None
+            if hit.get("unitPrice"):
+                unit_price = float(hit.get("unitPrice"))
+                unit_price_uom = hit.get("uom")
+
+            # Extract category
+            category_path = None
+            if "hierarchicalCategories" in hit:
+                hier_cats = hit["hierarchicalCategories"]
+                for level in ["lvl2", "lvl1", "lvl0"]:
+                    if level in hier_cats and hier_cats[level]:
+                        cat = hier_cats[level]
+                        category_path = cat[0] if isinstance(cat, list) else cat
+                        break
+
+            # Availability
+            in_stock = hit.get("inStock", True)
+            availability = "in_stock" if in_stock else "out_of_stock"
+
+            # External ID (UPC)
+            external_id = hit.get("upc") or hit.get("gtin") or hit.get("articleNumber")
+            if external_id and isinstance(external_id, str) and ',' in external_id:
+                external_id = external_id.split(',')[0].strip()
+
+            # Image URL
+            image_url = None
+            if "images" in hit and hit["images"]:
+                image_url = hit["images"][0] if isinstance(hit["images"], list) else hit["images"]
+            elif "image" in hit:
+                image_url = hit["image"]
+
+            # Source URL
+            source_url = self.base_url
+            if "pageSlug" in hit:
+                source_url = f"{self.base_url}/product/{hit['pageSlug']}"
+
+            return ProductRecord(
+                store=self.store_name,
+                site_slug=self.site_slug,
+                source_url=source_url,
+                scrape_ts=get_iso_timestamp(),
+                external_id=external_id,
+                name=name,
+                brand=brand,
+                size_text=size_text,
+                price=price,
+                currency="CAD",
+                unit_price=unit_price,
+                unit_price_uom=unit_price_uom,
+                image_url=image_url,
+                category_path=category_path,
+                availability=availability,
+                query_category=self.current_query,
+                raw_source={'type': 'algolia', 'data': hit}
+            )
+
+        except Exception as e:
+            logging.warning(f"Failed to parse Algolia hit: {e}")
+            return None
 
     def _human_delay(self, min_seconds=0.5, max_seconds=2.0):
         """Random delay to simulate human behavior."""
@@ -875,6 +1035,7 @@ class SafewayScraper(BaseScraper):
                 image_url=image_url,
                 category_path=None,
                 availability='unknown',
+                query_category=self.current_query,
                 raw_source={'type': 'dom', 'url': product_url}
             )
 
@@ -911,9 +1072,10 @@ class SafewayScraper(BaseScraper):
                 image_url=raw_data.get('imageUrl') or raw_data.get('image'),
                 category_path=raw_data.get('category') or raw_data.get('categoryPath'),
                 availability=self._parse_stock_status(
-                    raw_data.get('inStock'), 
+                    raw_data.get('inStock'),
                     raw_data.get('availability')
                 ),
+                query_category=self.current_query,
                 raw_source={'type': 'json', 'data': raw_data}
             )
 
@@ -1025,9 +1187,57 @@ class SafewayScraper(BaseScraper):
         return total_scraped
 
     def scrape_search(self, query: str, max_pages: Optional[int] = None) -> int:
-        """Scrape products from search results using Google navigation."""
+        """
+        Scrape products from search results.
+        Uses Algolia API as primary method with Playwright fallback.
+        """
+        self.current_query = query  # Track query for ProductRecord
         logging.info(f"Searching for: {query}")
-        
+
+        # Try Algolia API first (faster and more reliable)
+        total_scraped = self._scrape_search_algolia(query, max_pages)
+        if total_scraped > 0:
+            return total_scraped
+
+        logging.warning("Algolia API failed, falling back to Playwright...")
+        return self._scrape_search_playwright(query, max_pages)
+
+    def _scrape_search_algolia(self, query: str, max_pages: Optional[int] = None) -> int:
+        """Scrape search results using Algolia API."""
+        total_scraped = 0
+        page = 0
+
+        while True:
+            products, page_info = self._search_algolia(query, page)
+
+            if not products:
+                if page == 0:
+                    logging.warning(f"No products found via Algolia for '{query}'")
+                break
+
+            saved = self.save_records_batch(products)
+            total_scraped += saved
+            logging.info(f"Algolia page {page + 1}: Saved {saved}/{len(products)} products")
+
+            self.stats['pages_processed'] += 1
+            page += 1
+
+            # Check pagination limits
+            total_pages = page_info.get('nbPages', 0)
+            if max_pages and page >= max_pages:
+                logging.info(f"Reached max_pages limit ({max_pages})")
+                break
+            if page >= total_pages:
+                logging.info("Reached end of Algolia results")
+                break
+
+            # Polite delay
+            time.sleep(random.uniform(1.0, 2.0))
+
+        return total_scraped
+
+    def _scrape_search_playwright(self, query: str, max_pages: Optional[int] = None) -> int:
+        """Fallback: Scrape search results using Playwright browser."""
         self._launch_browser()
         
         try:

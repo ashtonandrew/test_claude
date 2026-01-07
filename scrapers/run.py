@@ -144,6 +144,12 @@ Examples:
         help='Clear checkpoint before starting'
     )
 
+    parser.add_argument(
+        '--fresh',
+        action='store_true',
+        help='Fresh start: clear checkpoint AND archive+clear data files (recommended for new scrape runs)'
+    )
+
     # Logging options
     parser.add_argument(
         '--log-level',
@@ -168,7 +174,8 @@ Examples:
     scraper = scraper_class(
         config_path=config_path,
         project_root=project_root,
-        headless=args.headless
+        headless=args.headless,
+        fresh_start=args.fresh
     )
 
     # Setup logging with automatic rotation
@@ -182,9 +189,12 @@ Examples:
     logging.info("=" * 60)
 
     # Handle checkpoint
-    if args.clear_checkpoint:
+    if args.fresh or args.clear_checkpoint:
         scraper.checkpoint_manager.clear()
         logging.info("Checkpoint cleared")
+
+    if args.fresh:
+        logging.info("Fresh start mode: data files archived and cleared")
 
     if args.resume:
         checkpoint = scraper.load_checkpoint()

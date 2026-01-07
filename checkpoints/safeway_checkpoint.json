@@ -1,11 +1,13 @@
 {
-  "seen_keys": [],
+  "seen_keys": [
+    "safeway:041570059609"
+  ],
   "stats": {
-    "total_scraped": 0,
-    "duplicates_skipped": 0,
+    "total_scraped": 1,
+    "duplicates_skipped": 95,
     "invalid_records": 0,
-    "pages_processed": 0,
+    "pages_processed": 2,
     "errors": 0
   },
-  "last_updated": "2025-12-20T23:46:48.887468Z"
+  "last_updated": "2026-01-02T05:27:17.623192Z"
 }

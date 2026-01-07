@@ -196,6 +196,7 @@ class SobeysScraper(SafewayScraper):
                 image_url=image_url,
                 category_path=None,
                 availability='unknown',
+                query_category=self.current_query,
                 raw_source={'type': 'dom', 'url': product_url}
             )
 

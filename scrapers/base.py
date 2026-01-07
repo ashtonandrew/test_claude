@@ -165,17 +165,19 @@ class BaseScraper(ABC):
     Provides common functionality: config, paths, checkpoints, dedupe, validation.
     """
 
-    def __init__(self, config_path: Path, project_root: Path):
+    def __init__(self, config_path: Path, project_root: Path, fresh_start: bool = False):
         """
         Initialize base scraper.
 
         Args:
             config_path: Path to site-specific config JSON
             project_root: Project root directory
+            fresh_start: If True, archive and clear data files for a completely fresh scrape
         """
         self.project_root = project_root
         self.config_path = config_path
         self.config = self._load_config()
+        self.fresh_start = fresh_start
 
         # Site metadata
         self.site_slug = self.config['site_slug']
@@ -185,7 +187,7 @@ class BaseScraper(ABC):
         ensure_data_directories(self.project_root)
         self._setup_paths()
 
-        # Backup existing data before starting
+        # Backup existing data before starting (and optionally clear for fresh start)
         self._backup_existing_data()
 
         # Initialize components
@@ -240,7 +242,10 @@ class BaseScraper(ABC):
         self.checkpoint_path = checkpoints_dir / f"{self.site_slug}_checkpoint.json"
 
     def _backup_existing_data(self):
-        """Create timestamped backup of existing data file before starting new scrape run."""
+        """
+        Create timestamped backup of existing data file before starting new scrape run.
+        If fresh_start is True, also clears the data files after backup.
+        """
         # Get backup settings from config (with sensible defaults)
         max_backups = self.config.get('max_backups', 5)
         compress_backups = self.config.get('compress_backups', False)
@@ -248,6 +253,15 @@ class BaseScraper(ABC):
         backup_data_file(self.jsonl_path, max_backups=max_backups, compress=compress_backups)
         # Also backup CSV if it exists
         backup_data_file(self.csv_path, max_backups=max_backups, compress=compress_backups)
+
+        # For fresh start, clear the data files after backup
+        if self.fresh_start:
+            if self.jsonl_path.exists():
+                self.jsonl_path.unlink()
+                logging.info(f"Cleared data file for fresh start: {self.jsonl_path.name}")
+            if self.csv_path.exists():
+                self.csv_path.unlink()
+                logging.info(f"Cleared CSV file for fresh start: {self.csv_path.name}")
 
     def load_checkpoint(self) -> Dict:
         """Load checkpoint data."""
